@@ -85,51 +85,9 @@
 <body>
     <section>
         <br><br>
-        <center><h1>Método Algebraico</h1></center>
+        <center><h1>Distribución binomial</h1></center>
 
-        <h5><span class="highlight">Función original:</span>
-            f(a, b, c, d) = ∑m(0, 1, 2, 3, 8, 9, 10, 11)
-        </h5>
-
-        <h5><span class="highlight">1. Conversión a términos binarios:</span>
-            (0000, 0001, 0010, 0011, 1000, 1001, 1010, 1011)<br>
-            Correspondientes a los minterms: 0, 1, 2, 3, 8, 9, 10, 11
-        </h5>
-
-        <h5><span class="highlight">2. Expresión canónica:</span>
-            f(a, b, c, d) = a'b'c'd' + a'b'c'd + a'b'cd' + a'b'cd + ab'c'd' + ab'c'd + ab'cd' + ab'cd
-        </h5>
-
-        <h5><span class="highlight">3. Proceso de simplificación:</span><br><br>
-            = a'b'c'(d' + d) + a'b'c(d' + d) + ab'c'(d' + d) + ab'c(d' + d)
-            <span class="step">→ Factorización por términos comunes</span>
-
-            <br><br>= a'b'c'(1) + a'b'c(1) + ab'c'(1) + ab'c(1)
-            <span class="step">→ Aplicando ley: d' + d = 1</span>
-
-            <br><br>= a'b'c' + a'b'c + ab'c' + ab'c
-            <span class="step">→ Eliminando 1 innecesarios</span>
-
-            <br><br>= a'b'(c' + c) + ab'(c' + c)
-            <span class="step">→ Nueva factorización</span>
-
-            <br><br>= a'b'(1) + ab'(1)
-            <span class="step">→ Ley: c' + c = 1</span>
-
-            <br><br>= a'b' + ab'
-            <span class="step">→ Reducción</span>
-
-            <br><br>= (a' + a)b'
-            <span class="step">→ Factor común</span>
-
-            <br><br>= (1)b' = b'
-            <span class="step">→ Resultado final</span>
-        </h5>
-
-        <div class="final-result">
-            Función simplificada: f(a, b, c, d) = b'
-        </div>
-        <br><br>
+        
     </section>
 </body>
 </html>

@@ -1,109 +1,116 @@
 <!DOCTYPE html>
-<html lang="es" style="">
+<html lang="es" >
 
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="Author" content="Equipo 2"><!--Autor-->
-	<script src="media/js/jq.js" type="text/javascript"></script>
-	<script src="media/js/m.js" type="text/javascript"></script>
-	<script src="media/js/ui.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="media/css/ui.css" type="text/css">
-	<link rel="icon" href="media/img/icono1.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="Author" content="Equipo 2"><!--Autor-->
+    <script src="media/js/jq.js" type="text/javascript"></script>
+    <script src="media/js/m.js" type="text/javascript"></script>
+    <script src="media/js/ui.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="media/css/ui.css" type="text/css">
+    <link rel="icon" href="media/img/icono1.png">
 </head>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(rgba(27, 27, 31, 0.85), rgba(27, 27, 31, 0.9)), 
-                        url('Imagenes/fondo.jpg') center/cover no-repeat fixed;
-            color: #f0f0f0;
-            overflow-x: hidden;
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(rgba(27, 27, 31, 0.85), rgba(27, 27, 31, 0.9)),
+            url('Imagenes/fondo.jpg') center/cover no-repeat fixed;
+        color: #f0f0f0;
+        overflow-x: hidden;
+    }
+
+    section {
+        padding: 30px;
+        width: 80%;
+        max-width: 800px;
+        margin: 80px 0;
+    }
+
+    h1 {
+        color: rgb(179, 205, 203);
+        text-align: center;
+        font-size: 2.0em;
+        margin-bottom: 25px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        padding-top: 70px;
+    }
+
+    h2 {
+        color: rgb(179, 205, 203);
+        margin-top: 20px;
+        margin-bottom: 8px;
+        font-size: 1.5em;
+        border-bottom: 1px solid rgb(179, 205, 203);
+        padding-bottom: 5px;
+        padding-left: 15px;
+    }
+
+    h3 {
+        color: #ffffff;
+        margin: 6px 0;
+        padding-left: 150px;
+        font-size: 1.5em;
+        font-weight: normal;
+        position: relative;
+        line-height: 1.4;
+    }
+
+    h3::before {
+        content: "•";
+        color: rgb(179, 205, 203);
+        position: absolute;
+        left: 120px;
+        font-size: 1.2em;
+    }
+
+    h3:hover {
+        color: #fff;
+        transform: translateX(5px);
+        transition: all 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        section {
-            padding: 30px;
-            width: 80%;
-            max-width: 800px;
-            margin: 80px 0; 
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        h1 {
-            color: rgb(179, 205, 203);
-            text-align: center;
-            font-size: 2.0em; 
-            margin-bottom: 25px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            padding-top: 70px; 
-        }
+    section {
+        animation: fadeIn 0.8s ease-out;
+    }
+</style>
 
-        h2 {
-            color: rgb(179, 205, 203);
-            margin-top: 20px;
-            margin-bottom: 8px;
-            font-size: 1.5em;
-            border-bottom: 1px solid rgb(179, 205, 203);
-            padding-bottom: 5px;
-            padding-left: 15px; 
-        }
-
-        h3 {
-            color: #ffffff;
-            margin: 6px 0;
-            padding-left: 150px; 
-            font-size: 1.5em;
-            font-weight: normal;
-            position: relative;
-            line-height: 1.4;
-        }
-
-        h3::before {
-            content: "•";
-            color: rgb(179, 205, 203);
-            position: absolute;
-            left: 120px; 
-            font-size: 1.2em;
-        }
-
-        h3:hover {
-            color: #fff;
-            transform: translateX(5px);
-            transition: all 0.2s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            animation: fadeIn 0.8s ease-out;
-        }
-    </style>
-
-<body style="">
-    <section>
+<body >
+    <section style="margin-top: 150px;">
         <h1><br><br>TEMARIO <br><br></h1>
         <h2>1. Objetivo</h2>
         <h2>2. Introducción</h2>
         <h2>3. Desarrollo</h2>
         <h3>Método Algebraico</h3>
         <h3>Software del Método Algebraico</h3>
-        <h3>Método Mapas de Karnaugh</h3>	
+        <h3>Método Mapas de Karnaugh</h3>
         <h3>Software de probabilidad discreta</h3>
         <h4>Distribución Bernoulli</h4>
         <h4>Distribución binomial</h4>
         <h4>Distribución hipergeométrica</h4>
         <h4>Distribución geométrica</h4>
-        <h4>Distribución Poisson</h4>            
+        <h4>Distribución Poisson</h4>
         <h3>Probabilidad condicional</h3>
-            <h4>Teorema de Bayes</h4>        
+        <h4>Teorema de Bayes</h4>
         <h2>4. Ejemplos</h2>
         <h2>5. Video</h2>
         <h2>6. Cuestionario</h2>

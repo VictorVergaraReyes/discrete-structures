@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución Poisson</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            
+            
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .input-section, .output-section {
+            border: 1px solid rgb(179, 205, 203);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .kmap {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .kmap-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            background-color: #ffffff; 
+            border: 2px solid rgb(179, 205, 203); 
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+        .kmap-cell.header {
+            font-weight: bold;
+            background-color: rgb(230, 245, 244); 
+            border: 2px solid rgb(179, 205, 203);
+        }
+        .kmap-cell input {
+            transform: scale(1.5);
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4ca0af;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #4ca0af;
+        }
+        #reset {
+            background-color: #316872;
+        }
+        #reset:hover {
+            background-color: #316872;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 2px solid rgb(179, 205, 203);
+            background-color: #ffffff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(230, 245, 244); 
+            font-weight: bold;
+        }
+        .result {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgb(179, 205, 203);
+            border-left: 4px solid #4ca0af;
+        }
+        .minterms-input {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgb(179, 205, 203);
+            border-radius: 5px;
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        h1, h2 {
+        color: rgb(179, 205, 203); 
+        border-bottom: 2px solid #3498db; 
+        padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distribución Poisson</h1>
+                
+    </div>
+
+</body>
+</html>
