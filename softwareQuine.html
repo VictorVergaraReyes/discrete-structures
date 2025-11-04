@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quine-McCluskey Minimizer</title>
+    <style>
+        .kmap-title {
+            color: rgb(179, 205, 203);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4da6ff;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 500;
+        }
+
+        .kmap-subtitle {
+            color: rgb(179, 205, 203);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .kmap-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .kmap-result {
+            margin: 20px auto 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #4da6ff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #fefefe;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #4da6ff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+        }
+
+        /* Estilos para botones */
+        .kmap-btn {
+            display: inline-block;
+            font-weight: bold;
+            color: white;
+            background-color: #4da6ff;
+            border: 1px solid #204367;
+            border-radius: 10px;
+            text-align: center;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .kmap-btn:hover {
+            background-color: #204367;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .kmap-btn-secondary {
+            background-color: #6c757d;
+            border-color: #5a6268;
+        }
+
+        .kmap-btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Estilos para resultados y pasos */
+        .result-title {
+            font-size: 1.3em;
+            color: rgb(179, 205, 203);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .result-expression {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .steps-container {
+            margin-top: 30px;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #4da6ff;
+        }
+
+        .step-title {
+            font-size: 1.1em;
+            color: #4da6ff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Estilos para tablas */
+        .qmc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        .qmc-table th, .qmc-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .qmc-table th {
+            background-color: #f1f1f1;
+            font-weight: 600;
+        }
+
+        /* Estilos para la sección de información */
+        .info-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .info-title {
+            color: rgb(179, 205, 203);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .symbol-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .symbol-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+
+        /* Circuito lógico */
+                        .circuit {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            margin: 20px 0;
+                            padding: 20px;
+                            background: #fff;
+                            border-radius: 10px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                            overflow-x: auto;
+                        }
+
+                        .gate {
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            color: white;
+                            font-weight: bold;
+                            text-align: center;
+                            min-width: 60px;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        }
+
+                        .and-gate {
+                            background-color: #4da6ff;
+                        }
+
+                        .or-gate {
+                            background-color: rgb(179, 205, 203);
+                        }
+
+                        .not-gate {
+                            background-color: #e74c3c;
+                            font-size: 0.8em;
+                            padding: 5px 10px;
+                            margin-left: -8px;
+                        }
+
+                        .input {
+                            padding: 8px 15px;
+                            background: #f0f2f5;
+                            border-radius: 6px;
+                            margin: 0 5px;
+                            font-family: monospace;
+                            font-weight: bold;
+                            color: #333;
+                        }
+
+                        /* Tabla de verdad */
+                        .truth-table {
+                            width: 100%;
+                            border-collapse: separate;
+                            border-spacing: 0;
+                            margin: 20px 0;
+                            background: white;
+                            border-radius: 8px;
+                            overflow: hidden;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                        }
+
+                        .truth-table th, .truth-table td {
+                            border: 1px solid #e0e0e0;
+                            padding: 12px;
+                            text-align: center;
+                        }
+
+                        .truth-table th {
+                            background-color: #4da6ff;
+                            color: white;
+                            font-weight: 600;
+                        }
+
+                        .truth-table tr:nth-child(even) {
+                            background-color: #f9f9f9;
+                        }
+
+                        .truth-table tr:hover {
+                            background-color: #f0f2f5;
+                        }
+
+                        /* Secciones de resultados */
+                        .result-section {
+                            margin-top: 30px;
+                            padding: 25px;
+                            background: white;
+                            border-radius: 10px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                            border-left: 4px solid #4da6ff;
+                        }
+
+                        .result-title {
+                            color: #4da6ff;
+                            font-size: 1.3em;
+                            margin-bottom: 20px;
+                            padding-bottom: 10px;
+                            border-bottom: 1px solid #eee;
+                        }
+
+        @media (max-width: 768px) {
+            .kmap-wrapper {
+                padding: 10px;
+                align-items: flex-start;
+            }
+            
+            .kmap-container {
+                padding: 20px;
+            }
+            
+            .kmap-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .kmap-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script src="media/js/app2.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables del formulario
+            const varCount = document.getElementById('var-count');
+            const variablesInput = document.getElementById('variables');
+            const mintermsInput = document.getElementById('minterms');
+            const dontcaresInput = document.getElementById('dontcares');
+            const minimizeBtn = document.getElementById('minimize-btn');
+            const randomBtn = document.getElementById('random-btn');
+            const resultContainer = document.getElementById('result-container');
+            const stepsContainer = document.getElementById('steps-container');
+            
+            // Actualizar variables cuando cambia el número
+            varCount.addEventListener('change', function() {
+                const count = parseInt(this.value);
+                const vars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].slice(0, count);
+                variablesInput.value = vars.join(', ');
+            });
+            
+            // Minimizar función
+            minimizeBtn.addEventListener('click', function() {
+                const variables = variablesInput.value.split(',').map(v => v.trim());
+                const minterms = mintermsInput.value.split(',').map(Number).filter(n => !isNaN(n));
+                const dontcares = dontcaresInput.value ? 
+                    dontcaresInput.value.split(',').map(Number).filter(n => !isNaN(n)) : [];
+                
+                const qmc = new QuineMcCluskey();
+                const result = qmc.minimize(minterms, dontcares, variables);
+                
+                // Mostrar expresión minimizada
+                resultContainer.innerHTML = `
+                    <div class="result-title">Expresión Minimizada</div>
+                    <div class="result-expression">${result.expression}</div>
+                `;
+                resultContainer.style.display = 'block';
+                
+                // Mostrar circuito lógico
+                const circuitContainer = document.getElementById('circuit-content');
+                circuitContainer.innerHTML = '';
+                circuitContainer.appendChild(drawCircuit(result.expression));
+                document.getElementById('circuit-container').style.display = 'block';
+                
+                // Mostrar tabla de verdad
+                const truthTableContainer = document.getElementById('truth-table-content');
+                truthTableContainer.innerHTML = '';
+                truthTableContainer.appendChild(generateTruthTable(result.expression, variables));
+                document.getElementById('truth-table-container').style.display = 'block';
+                
+                // Mostrar pasos del algoritmo (existente)
+                stepsContainer.innerHTML = '<div class="info-title">Pasos del Algoritmo</div>';
+                result.steps.forEach(step => {
+                    const stepDiv = document.createElement('div');
+                    stepDiv.className = 'step';
+                    stepDiv.innerHTML = `
+                        <div class="step-title">${step.title}</div>
+                        ${step.content}
+                    `;
+                    stepsContainer.appendChild(stepDiv);
+            });
+});
+        });
+    </script>
+
+
+
+</head>
+<body>
+    <div class="kmap-wrapper">
+        <div class="kmap-container">
+            <h1 class="kmap-title">Algoritmo Quine-McCluskey</h1>
+            <p class="kmap-subtitle">Minimización de funciones booleanas</p>
+            
+            <div class="form-group">
+                <label for="var-count">Número de variables:</label>
+                <select id="var-count" class="form-control">
+                    <option value="2">2 variables</option>
+                    <option value="3" selected>3 variables</option>
+                    <option value="4">4 variables</option>
+                    <option value="5">5 variables</option>
+                    <option value="6">6 variables</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="variables">Variables (separadas por comas):</label>
+                <input type="text" id="variables" class="form-control" value="A, B, C" placeholder="Ej: A, B, C, D">
+            </div>
+            
+            <div class="form-group">
+                <label for="minterms">Minitérminos (separados por comas):</label>
+                <input type="text" id="minterms" class="form-control" placeholder="Ej: 0, 1, 2, 5, 6, 7">
+            </div>
+            
+            <div class="form-group">
+                <label for="dontcares">Condiciones "Don't Care" (opcional):</label>
+                <input type="text" id="dontcares" class="form-control" placeholder="Ej: 3, 4">
+            </div>
+            
+            <div class="kmap-controls">
+                <button id="minimize-btn" class="kmap-btn">Minimizar</button>
+            </div>
+            
+
+
+
+
+            <div id="result-container" class="kmap-result" style="display: none;">
+    <!-- Contenido dinámico se insertará aquí -->
+</div>
+<!-- Nuevas secciones para circuito y tabla de verdad -->
+<div id="circuit-container" class="result-section" style="display: none;">
+    <div class="result-title">Representación Gráfica</div>
+
+    <div id="circuit-content"></div>
+</div>
+
+<div id="truth-table-container" class="result-section" style="display: none;">
+    <div class="result-title">Tabla de Verdad</div>
+`<h3>Se muestran las combinaciones posibles de entradas, tomando en cuenta la función minimizada como resultado. </h3>
+    <div id="truth-table-content"></div>
+</div>
+            <div id="steps-container" class="steps-container">
+            </div>
+
+
+
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

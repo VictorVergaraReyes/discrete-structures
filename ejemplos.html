@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="Author" content="Equipo 6"/><!--Autor-->
+    <meta name="Description" content="Estudio General del Sistema"/><!--Descripción del tutorial-->
+    <meta name="Keywords" content="Factores, Estudio, General, Sistema"/><!--Palabras clave-->
+    <meta name="robots" content="noindex, nofollow"/>
+    
+    <script src="media/js/jq.js" type="text/javascript"></script>
+    <script src="media/js/m.js" type="text/javascript"></script>
+    <script src="media/js/ui.js" type="text/javascript"></script>
+    
+    <link rel="stylesheet" href="media/css/ui.css" type="text/css" />
+    <link rel="stylesheet" href="media/css/ejemplos.css" type="text/css" />
+
+    <style>
+        /* Estilos para mejorar la presentación sin cambiar el diseño */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .exercise {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .exercise-title {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(179, 205, 203);
+        }
+        .toggle-btn {
+            display: block;
+            font-weight: bold;
+            color: #000000;
+            background-color: rgb(179, 205, 203);
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            text-align: center;
+            padding: 15px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn:hover {
+            background-color: rgb(179, 205, 203);
+            transform: translateY(-2px);
+        }
+        .solution {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffffffcb;
+            border-radius: 8px;
+            border-left: 4px solid rgb(179, 205, 203);
+        }
+        .solution h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            background: #fff;
+        }
+        .image-container small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .property {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+
+    <script>
+        function toggleVisibility(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <section class="main clearfix">
+        <section class="top">    
+            <div class="wrapper content_header clearfix">
+                <center><h1 class="title"><br><h1><t>Ejemplos</t></h1></center>
+            </div>
+        </section>
+
+        <section class="wrapper">
+            <div class="content">
+                <div class="exercise">
+                    <h3 class="exercise-title">Hallar la expresión booleana minimizada:</h3>
+                    
+                    <div class="image-container">
+                        <img src="media/img/Ejercicio_2.jpg" alt="Tabla de verdad">
+                        <small>Tabla de verdad</small>
+                    </div>
+                    
+                    <a href="#" onclick="toggleVisibility('hiddenText2'); return false;" class="toggle-btn">
+                        <strong>❖ Solución</strong>
+                    </a>
+                    <div class="solution" id="hiddenText2">
+                        <h4>
+                            Paso 1. Hallar los Minitérminos:
+                            <br>
+                            F = a'b'c' + a'b'c + a'bc' + a'bc + ab'c' + ab'c + abc' + abc
+                            <br><br>
+                            Paso 2. Simplificar mediante las propiedades hasta llegar a la expresión mínima:
+                            <br>
+                            F = a'b'(c'+c) + a'bc' + a'bc + ab'c' + ab'c + ab(c' + c) <span class="property">(Factorización)</span>
+                            <br>
+                            F = a'b' + a'bc' + a'bc + ab'(c' + c) + ab <span class="property">(Tautología: c'+c = 1)</span>
+                            <br>
+                            F = a'b' + a'b + ab' + ab <span class="property">(Tautología: c'+c = 1)</span>
+                            <br>
+                            Finalmente la expresión queda: 1 <span class="property">(Identidad: a'b' + a'b + ab' + ab = 1)</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="divider">━━━━━━━━━━━━━━━━━━━ ◦ ❖ ◦ ━━━━━━━━━━━━━━━━━</div>
+
+                <!-- Ejercicio 2 -->
+                <div class="exercise">
+                    <h3 class="exercise-title">Obtener la expresión mínima con el método de Karnaugh:</h3>
+                    <a href="#" onclick="toggleVisibility('hiddenText5'); return false;" class="toggle-btn">
+                        <strong>❖ f(a,b,c) = abc' + a'bc' + abc + ab'c</strong>
+                    </a>
+                    <div class="solution" id="hiddenText5">
+                        <h4>
+                            Para construir el diagrama de Karnaugh, se hace una tabla de verdad para visualizar de forma binaria los minitérminos de la fórmula booleana.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_5.jpg" alt="Ejercicio 5">
+                                <small>Ejercicio 5</small>
+                            </div>
+                            
+                            Se construye el diagrama de Karnaugh para una función booleana de tres variables.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_51.jpg" alt="Diagrama de Karnaugh">
+                                <small>Diagrama de Karnaugh</small>
+                            </div>
+                            
+                            Se colocan números uno en los recuadros donde los valores de las variables coinciden con los que están en la tabla de verdad, que, además, a su vez, tienen un número uno en la columna de salida. Las casillas vacías se rellenan con ceros.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_52.jpg" alt="Diagrama lleno">
+                                <small>Diagrama lleno</small>
+                            </div>
+                            
+                            Se marcan las adyacencias que se identifiquen.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_53.jpg" alt="Adyacencias marcadas">
+                                <small>Adyacencias marcadas</small>
+                            </div>
+                            
+                            Para transcribir las adyacencias a minitérminos, se verifica que los valores de las variables en el diagrama de Karnaugh se mantienen constantes. Por ejemplo, la adyacencia gris tiene a A como constante con 1, pero B no lo es, por lo que no se agrega. C sí lo es. Se hace el mismo análisis con la otra adyacencia para obtener la fórmula minimizada.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_54.jpg" alt="Fórmula minimizada">
+                                <small>Fórmula minimizada</small>
+                            </div>
+                            
+                            Los minitérminos obtenidos se conectan con sumas para obtener una función en una forma normal disyuntiva.
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="divider">━━━━━━━━━━━━━━━━━━━ ◦ ❖ ◦ ━━━━━━━━━━━━━━━━━</div>
+
+                <!-- Ejercicio 6 -->
+                <div class="exercise">
+                    <h3 class="exercise-title">Obtener la expresión mínima de la siguiente fórmula booleana:</h3>
+                    
+                    <div class="image-container">
+                        <img src="media/img/Ejercicio_6.jpg" alt="Fórmula 6">
+                        <small>Fórmula 6</small>
+                    </div>
+                    
+                    <a href="#" onclick="toggleVisibility('hiddenText6'); return false;" class="toggle-btn">
+                        <strong>❖ Solución</strong>
+                    </a>
+                    <div class="solution" id="hiddenText6">
+                        <h4>
+                            Para construir el diagrama de Karnaugh, se hace una tabla de verdad para visualizar de forma binaria los minitérminos de la fórmula booleana.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_61.jpg" alt="Tabla de verdad">
+                                <small>Tabla de verdad</small>
+                            </div>
+                            
+                            Se construye el diagrama de Karnaugh para una función booleana de tres variables.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_62.jpg" alt="Diagrama de Karnaugh">
+                                <small>Diagrama de Karnaugh</small>
+                            </div>
+                            
+                            Se colocan números uno en los recuadros donde los valores de las variables coinciden con los que están en la tabla de verdad, que, además, a su vez, tienen un número uno en la columna de salida. Las casillas vacías se rellenan con ceros.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_63.jpg" alt="Diagrama lleno">
+                                <small>Diagrama lleno</small>
+                            </div>
+                            
+                            Se marcan las adyacencias que se identifiquen.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_64.jpg" alt="Adyacencias marcadas">
+                                <small>Adyacencias marcadas</small>
+                            </div>
+                            
+                            Para transcribir las adyacencias a minitérminos, se verifica que los valores de las variables en el diagrama de Karnaugh se mantienen constantes. Por ejemplo, la adyacencia verde tiene a A, B y D constantes, pero no a C. Por lo tanto, la C se ignora, y las demás variables se incluyen en la forma minimizada.
+                            
+                            <div class="image-container">
+                                <img src="media/img/Ejercicio_65.jpg" alt="Fórmula minimizada">
+                                <small>Fórmula minimizada</small>
+                            </div>
+                            
+                            Los minitérminos obtenidos se conectan con sumas para obtener una función en una forma normal disyuntiva.
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="divider">━━━━━━━━━━━━━━━━━━━ ◦ ❖ ◦ ━━━━━━━━━━━━━━━━━</div>
+
+                <!-- Ejercicio 10 -->
+                <div class="exercise">
+                    <h3 class="exercise-title">Demuestra la siguiente equivalencia booleana:</h3>
+                    <a href="#" onclick="toggleVisibility('hiddenText10'); return false;" class="toggle-btn">
+                        <strong>❖ xyz + xz + z = z</strong>
+                    </a>
+                    <div class="solution" id="hiddenText10">
+                        <h4>
+                            xyz + xz + z = xyz + z (x+1) <span class="property">(Factorización)</span>
+                            <br>
+                            = xyz + z (1) <span class="property">(Dominancia: x+1 = 1)</span>
+                            <br>
+                            = xyz + z <span class="property">(Identidad: z(1)) = z)</span>
+                            <br>
+                            = z (xy + 1) <span class="property">(Factorización)</span>
+                            <br>
+                            = z (1) <span class="property">(Dominancia: xy+1 = 1)</span>
+                            <br>
+                            = z
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="divider">━━━━━━━━━━━━━━━━━━━ ◦ ❖ ◦ ━━━━━━━━━━━━━━━━━</div>
+
+                <br><br><br><br>
+            </div>
+        </section>
+    </section>
+</body>
+</html>

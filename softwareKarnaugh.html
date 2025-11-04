@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplificador de Mapa de Karnaugh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            
+            
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .input-section, .output-section {
+            border: 1px solid rgb(179, 205, 203);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .kmap {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .kmap-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            background-color: #ffffff; 
+            border: 2px solid rgb(179, 205, 203); 
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+        .kmap-cell.header {
+            font-weight: bold;
+            background-color: rgb(230, 245, 244); 
+            border: 2px solid rgb(179, 205, 203);
+        }
+        .kmap-cell input {
+            transform: scale(1.5);
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4ca0af;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #4ca0af;
+        }
+        #reset {
+            background-color: #316872;
+        }
+        #reset:hover {
+            background-color: #316872;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 2px solid rgb(179, 205, 203);
+            background-color: #ffffff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(230, 245, 244); 
+            font-weight: bold;
+        }
+        .result {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgb(179, 205, 203);
+            border-left: 4px solid #4ca0af;
+        }
+        .minterms-input {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgb(179, 205, 203);
+            border-radius: 5px;
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        h1, h2 {
+        color: rgb(179, 205, 203); 
+        border-bottom: 2px solid #3498db; 
+        padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simplificador de Mapa de Karnaugh</h1>
+        
+        <div class="input-section">
+            <h2>Entrada de Datos</h2>
+            <div>
+                <label for="minterms">Ingrese los minterms separados por comas (ej: 1,2,3,4,8):</label>
+                <input type="text" id="minterms" class="minterms-input" placeholder="1,2,3,4,8">
+                <button id="load">Cargar Minterms</button>
+                <button id="reset">Reiniciar</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2>Proceso de Simplificación</h2>
+            
+            <div class="step">
+                <div class="step-title">Paso 1: Conversión a binario</div>
+                <div id="binary-output"></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Paso 2: Tabla de Verdad</div>
+                <div id="truth-table"></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Paso 3: Mapa de Karnaugh</div>
+                <div class="kmap" id="kmap">
+                    <!-- Mapa K se generará dinámicamente -->
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Paso 4: Agrupación</div>
+                <div id="grouping-info"></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">Paso 5: Resultado Final</div>
+                <div class="result" id="result">F = 0</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mapeo de posiciones en el K-map a minterms (AB columnas, CD filas)
+            // Orden: AB (A MSB, B LSB), CD (C MSB, D LSB)
+            const cellToMinterm = [
+                [0, 4, 12, 8],   // Fila 0
+                [1, 5, 13, 9],   // Fila 1
+                [3, 7, 15, 11],  // Fila 2
+                [2, 6, 14, 10]   // Fila 3
+            ];
+
+            // Variables para almacenar los minterms seleccionados
+            let selectedMinterms = [];
+
+            // Elementos del DOM
+            const kmapElement = document.getElementById('kmap');
+            const binaryOutputElement = document.getElementById('binary-output');
+            const truthTableElement = document.getElementById('truth-table');
+            const groupingInfoElement = document.getElementById('grouping-info');
+            const resultElement = document.getElementById('result');
+            const mintermsInput = document.getElementById('minterms');
+            const loadButton = document.getElementById('load');
+            const resetButton = document.getElementById('reset');
+
+            // Inicializar el mapa de Karnaugh
+            function initializeKmap() {
+                kmapElement.innerHTML = '';
+                
+                // Crear encabezados de columnas
+                kmapElement.appendChild(createHeaderCell('cd/ab')); // Celda vacía esquina
+                kmapElement.appendChild(createHeaderCell('00')); // Columna 0
+                kmapElement.appendChild(createHeaderCell('01')); // Columna 1
+                kmapElement.appendChild(createHeaderCell('11')); // Columna 2
+                kmapElement.appendChild(createHeaderCell('10')); // Columna 3
+                
+                // Crear filas del K-map
+                const rowLabels = ['00', '01', '11', '10'];
+                for (let row = 0; row < 4; row++) {
+                    // Añadir etiqueta de fila
+                    kmapElement.appendChild(createHeaderCell(rowLabels[row]));
+                    
+                    // Añadir celdas de la fila
+                    for (let col = 0; col < 4; col++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'kmap-cell';
+                        
+                        const minterm = cellToMinterm[row][col];
+                        const label = document.createElement('span');
+                        label.textContent = minterm;
+                        
+                        cell.appendChild(label);
+                        kmapElement.appendChild(cell);
+                    }
+                }
+            }
+
+            function createHeaderCell(text) {
+                const cell = document.createElement('div');
+                cell.className = 'kmap-cell header';
+                cell.textContent = text;
+                return cell;
+            }
+
+            // Actualizar todas las visualizaciones
+            function updateAllDisplays() {
+                updateBinaryOutput();
+                updateTruthTable();
+                updateKmapDisplay();
+                updateResult();
+            }
+
+            // Actualizar la salida binaria
+            function updateBinaryOutput() {
+                if (selectedMinterms.length === 0) {
+                    binaryOutputElement.innerHTML = '<p>No hay minterms seleccionados.</p>';
+                    return;
+                }
+                
+                selectedMinterms.sort((a, b) => a - b);
+                
+                let html = '<p>Minterms en binario (4 bits, orden ABCD):</p><ul>';
+                for (const m of selectedMinterms) {
+                    const binary = m.toString(2).padStart(4, '0');
+                    const a = binary[0];
+                    const b = binary[1];
+                    const c = binary[2];
+                    const d = binary[3];
+                    html += `<li>m${m} = ${a}${b}${c}${d} (A=${a}, B=${b}, C=${c}, D=${d})</li>`;
+                }
+                html += '</ul>';
+                
+                binaryOutputElement.innerHTML = html;
+            }
+            function updateTruthTable() {
+                if (selectedMinterms.length === 0) {
+                    truthTableElement.innerHTML = '<p>No hay minterms seleccionados.</p>';
+                    return;
+                }
+                
+                let html = `
+                    <table>
+                        <tr>
+                            <th>DECIMAL</th>
+                            <th>BINARIO (abcd)</th>
+                            <th>f(a, b, c, d)</th>
+                        </tr>
+                `;
+                
+                // Generar filas de 15 a 0 (en orden descendente)
+                for (let i = 15; i >= 0; i--) {
+                    const binary = i.toString(2).padStart(4, '0');
+                    const a = binary[0];
+                    const b = binary[1];
+                    const c = binary[2];
+                    const d = binary[3];
+                    const isMinterm = selectedMinterms.includes(i);
+                    
+                    html += `
+                        <tr>
+                            <td>${i}</td>
+                            <td>${binary}</td>
+                            <td>${isMinterm ? '1' : '0'}</td>
+                        </tr>
+                    `;
+                }
+                
+                html += '</table>';
+                truthTableElement.innerHTML = html;
+            }
+
+            function updateKmapDisplay() {
+                const cells = document.querySelectorAll('.kmap .kmap-cell:not(.header)');
+                let cellIndex = 0;
+                
+                for (let row = 0; row < 4; row++) {
+                    for (let col = 0; col < 4; col++) {
+                        const minterm = cellToMinterm[row][col];
+                        const cell = cells[cellIndex];
+                        
+                        if (selectedMinterms.includes(minterm)) {
+                            cell.style.backgroundColor = '#a5d6a7';
+                            cell.style.fontWeight = 'bold';
+                        } else {
+                            cell.style.backgroundColor = 'rgb(179, 205, 203)';
+                            cell.style.fontWeight = 'normal';
+                        }
+                        
+                        cellIndex++;
+                    }
+                }
+            }
+
+            // Actualizar el resultado
+            function updateResult() {
+                if (selectedMinterms.length === 0) {
+                    resultElement.textContent = 'F = 0';
+                    groupingInfoElement.innerHTML = '<p>No hay minterms seleccionados para agrupar.</p>';
+                    return;
+                }
+                
+                if (selectedMinterms.length === 16) {
+                    resultElement.textContent = 'F = 1';
+                    groupingInfoElement.innerHTML = '<p>Todos los minterms están seleccionados (función siempre verdadera).</p>';
+                    return;
+                }
+                
+                const {expression, steps} = simplifyKmap(selectedMinterms);
+                resultElement.textContent = 'F = ' + expression;
+                
+                let groupingHtml = '<p>Proceso de agrupación:</p><ol>';
+                for (const step of steps) {
+                    groupingHtml += `<li>${step}</li>`;
+                }
+                groupingHtml += '</ol>';
+                groupingInfoElement.innerHTML = groupingHtml;
+            }
+
+            // Función principal para simplificar el K-map
+            function simplifyKmap(minterms) {
+                const steps = [];
+                minterms.sort((a, b) => a - b);
+                steps.push(`Minterms seleccionados: ${minterms.join(', ')}`);
+                
+                // Paso 1: Encontrar todos los implicantes primos
+                let primeImplicants = findPrimeImplicants(minterms, steps);
+                //steps.push(`Encontrados ${primeImplicants.length} implicantes primos`);
+                
+                // Paso 2: Seleccionar los implicantes esenciales
+                let essentialImplicants = findEssentialImplicants(primeImplicants, minterms, steps);
+                
+                // Paso 3: Simplificar la expresión
+                const expression = generateExpression(essentialImplicants);
+                steps.push(`Expresión simplificada: F = ${expression}`);
+                
+                return {expression, steps};
+            }
+
+            // Encontrar todos los implicantes primos
+            function findPrimeImplicants(minterms, steps) {
+                let groups = groupMinterms(minterms);
+                let primeImplicants = [];
+                let iteration = 1;
+                
+                // steps.push(`Agrupación inicial por número de 1s: ${JSON.stringify(Object.keys(groups))}`);
+                
+                while (true) {
+                    let newGroups = {};
+                    let marked = new Set();
+                    let hasMerged = false;
+                    
+                    // Intentar combinar grupos adyacentes
+                    const groupKeys = Object.keys(groups);
+                    for (let i = 0; i < groupKeys.length - 1; i++) {
+                        let bits1 = groupKeys[i];
+                        let group1 = groups[bits1];
+                        
+                        for (let j = i + 1; j < groupKeys.length; j++) {
+                            let bits2 = groupKeys[j];
+                            let group2 = groups[bits2];
+                            
+                            // Verificar si los grupos difieren en exactamente un bit
+                            let diff = 0;
+                            let diffPos = -1;
+                            for (let k = 0; k < bits1.length; k++) {
+                                if (bits1[k] !== bits2[k]) {
+                                    diff++;
+                                    diffPos = k;
+                                }
+                            }
+                            
+                            if (diff === 1) {
+                                hasMerged = true;
+                                // Crear nuevo grupo combinado
+                                let newBits = bits1.substring(0, diffPos) + '-' + bits1.substring(diffPos + 1);
+                                
+                                if (!newGroups[newBits]) {
+                                    newGroups[newBits] = new Set();
+                                }
+                                
+                                // Combinar minterms de ambos grupos
+                                for (let m of group1) {
+                                    newGroups[newBits].add(m);
+                                    marked.add(`${bits1}-${m}`);
+                                }
+                                for (let m of group2) {
+                                    newGroups[newBits].add(m);
+                                    marked.add(`${bits2}-${m}`);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Agregar grupos no marcados como implicantes primos
+                    for (let bits in groups) {
+                        for (let m of groups[bits]) {
+                            if (!marked.has(`${bits}-${m}`)) {
+                                primeImplicants.push({
+                                    bits: bits,
+                                    minterms: new Set([m]),
+                                    coveredMinterms: [m]
+                                });
+                            }
+                        }
+                    }
+                    
+                    if (!hasMerged) break;
+                    
+                    groups = newGroups;
+                    //steps.push(`Iteración ${iteration}: Nuevos grupos formados después de combinar`);
+                    iteration++;
+                }
+                
+                // Agregar los últimos grupos como implicantes primos
+                for (let bits in groups) {
+                    primeImplicants.push({
+                        bits: bits,
+                        minterms: groups[bits],
+                        coveredMinterms: Array.from(groups[bits])
+                    });
+                }
+                
+                return primeImplicants;
+            }
+
+            // Agrupar minterms por número de 1s en su representación binaria
+            function groupMinterms(minterms) {
+                let groups = {};
+                
+                for (let m of minterms) {
+                    // Convertir minterm a binario de 4 bits en orden A,B,C,D
+                    let a = (m & 8) ? 1 : 0; // A es el bit más significativo (8)
+                    let b = (m & 4) ? 1 : 0;  // B (4)
+                    let c = (m & 2) ? 1 : 0;  // C (2)
+                    let d = (m & 1) ? 1 : 0;  // D es el bit menos significativo (1)
+                    
+                    let binary = '' + a + b + c + d;
+                    let ones = binary.split('').filter(b => b === '1').length;
+                    
+                    if (!groups[ones]) {
+                        groups[ones] = [];
+                    }
+                    
+                    groups[ones].push({
+                        minterm: m,
+                        binary: binary
+                    });
+                }
+                
+                // Convertir a formato esperado por el algoritmo
+                let result = {};
+                for (let ones in groups) {
+                    for (let item of groups[ones]) {
+                        result[item.binary] = new Set([item.minterm]);
+                    }
+                }
+                
+                return result;
+            }
+
+            // Encontrar implicantes esenciales
+            function findEssentialImplicants(primeImplicants, minterms, steps) {
+                let essential = [];
+                let uncoveredMinterms = new Set(minterms);
+                //steps.push(`Buscando implicantes esenciales entre ${primeImplicants.length} implicantes primos`);
+                
+                // Crear mapa de cobertura
+                let coverage = {};
+                for (let m of minterms) {
+                    coverage[m] = [];
+                }
+                
+                for (let pi of primeImplicants) {
+                    for (let m of pi.coveredMinterms) {
+                        coverage[m].push(pi);
+                    }
+                }
+                
+                // Encontrar implicantes esenciales
+                while (uncoveredMinterms.size > 0) {
+                    let essentialFound = false;
+                    
+                    // Buscar minterms cubiertos por un solo implicante
+                    for (let m of Array.from(uncoveredMinterms)) {
+                        if (coverage[m].length === 1) {
+                            let essentialPi = coverage[m][0];
+                            essential.push(essentialPi);
+                            essentialFound = true;
+                            steps.push(`${piToString(essentialPi)} (cubre m${m})`);
+                            
+                            // Eliminar minterms cubiertos por este implicante
+                            for (let coveredM of essentialPi.coveredMinterms) {
+                                uncoveredMinterms.delete(coveredM);
+                                
+                                // Eliminar este implicante de otros minterms
+                                for (let otherM of coverage[coveredM]) {
+                                    if (otherM !== essentialPi) {
+                                        let index = otherM.coveredMinterms.indexOf(coveredM);
+                                        if (index > -1) {
+                                            otherM.coveredMinterms.splice(index, 1);
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    
+                    // Si no hay esenciales, seleccionar el implicante que cubra más minterms
+                    if (!essentialFound && uncoveredMinterms.size > 0) {
+                        let maxCoverage = 0;
+                        let bestPi = null;
+                        
+                        for (let pi of primeImplicants) {
+                            if (essential.includes(pi)) continue;
+                            
+                            let currentCoverage = pi.coveredMinterms.filter(m => uncoveredMinterms.has(m)).length;
+                            if (currentCoverage > maxCoverage) {
+                                maxCoverage = currentCoverage;
+                                bestPi = pi;
+                            }
+                        }
+                        
+                        if (bestPi) {
+                            essential.push(bestPi);
+                            steps.push(`${piToString(bestPi)} (cubre ${maxCoverage} minterms)`);
+                            for (let m of bestPi.coveredMinterms) {
+                                uncoveredMinterms.delete(m);
+                            }
+                        }
+                    }
+                }
+                
+                //steps.push(`Se encontraron ${essential.length} implicantes esenciales`);
+                return essential;
+            }
+
+            // Convertir implicante a string legible
+            function piToString(pi) {
+                const bits = pi.bits;
+                let terms = [];
+                
+                for (let i = 0; i < bits.length; i++) {
+                    if (bits[i] === '-') continue;
+                    
+                    const vars = ['A', 'B', 'C', 'D'];
+                    if (bits[i] === '0') {
+                        terms.push(vars[i] + "'");
+                    } else if (bits[i] === '1') {
+                        terms.push(vars[i]);
+                    }
+                }
+                
+                return terms.join('') + ` (m${pi.coveredMinterms.join(',m')})`;
+            }
+
+            // Función corregida para generar la expresión booleana (elimina duplicados)
+            function generateExpression(implicants) {
+                if (implicants.length === 0) return '0';
+                
+                const getVar = (bit, index) => {
+                    const vars = ['A', 'B', 'C', 'D'];
+                    if (bit === '0') return vars[index] + "'";
+                    if (bit === '1') return vars[index];
+                    return null;
+                };
+
+                let termsSet = new Set();  // Usamos un Set para evitar duplicados
+                
+                for (let pi of implicants) {
+                    let termParts = [];
+                    const bits = pi.bits;
+                    
+                    for (let i = 0; i < bits.length; i++) {
+                        const variable = getVar(bits[i], i);
+                        if (variable !== null) {
+                            termParts.push(variable);
+                        }
+                    }
+                    
+                    if (termParts.length > 0) {
+                        termsSet.add(termParts.join(''));  // Add al Set (ignora duplicados)
+                    }
+                }
+
+                if (termsSet.size === 0) return '1';
+                return Array.from(termsSet).join(' + ');  // Convertimos el Set a array
+            }
+            // Cargar minterms desde el input
+            function loadMintermsFromInput() {
+                const input = mintermsInput.value.trim();
+                if (!input) {
+                    alert('Por favor ingrese los minterms separados por comas.');
+                    return;
+                }
+                
+                try {
+                    const numbers = input.split(',').map(num => {
+                        const parsed = parseInt(num.trim());
+                        if (isNaN(parsed)) throw new Error();
+                        if (parsed < 0 || parsed > 15) throw new Error();
+                        return parsed;
+                    });
+                    
+                    selectedMinterms = [...new Set(numbers)]; // Eliminar duplicados
+                    updateAllDisplays();
+                } catch (e) {
+                    alert('Entrada inválida. Por favor ingrese números entre 0 y 15 separados por comas.');
+                }
+            }
+
+            // Reiniciar todo
+            function resetAll() {
+                selectedMinterms = [];
+                mintermsInput.value = '';
+                updateAllDisplays();
+            }
+
+            // Event listeners
+            loadButton.addEventListener('click', loadMintermsFromInput);
+            resetButton.addEventListener('click', resetAll);
+
+            // Inicializar
+            initializeKmap();
+        });
+    </script>
+</body>
+</html>

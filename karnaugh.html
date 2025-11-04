@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="Author" content="Equipo 6">
+    <script src="media/js/jq.js" type="text/javascript"></script>
+    <script src="media/js/m.js" type="text/javascript"></script>
+    <script src="media/js/ui.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="media/css/ui.css" type="text/css">
+    <link rel="stylesheet" href="media/css/portada.css" type="text/css">
+
+    <style>
+        h1 {
+            color: rgb(179, 205, 203);
+            text-justify: inter-word;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        h3 {
+            color: rgb(179, 205, 203);
+            text-justify: inter-word;
+            line-height: 1.6;
+        }
+        h5 {
+            text-align: justify;
+            text-justify: inter-word;
+            margin: 20px auto;
+            line-height: 1.8;
+            padding: 0 15px;
+        }
+        center {
+            margin: 25px 0;
+        }
+        .img-container {
+            position: relative;
+            margin: 50px auto;
+            text-align: center;
+            max-width: 60%;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        .img-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .img-caption-left,
+        .img-caption-right {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8em;
+
+            padding: 2px 5px;
+        }
+        .img-caption-left {
+            position: absolute;
+            left: 10px;
+            bottom: -20px; 
+            font-size: 0.8em;
+        }
+        .img-caption-right {
+            position: absolute;
+            right: 10px;
+            bottom: -20px; 
+            font-size: 0.8em;
+        }
+        small {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.8em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        body {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+
+</head>
+
+<body>
+    <br><br><br>
+    <center><h1>Mapas de Karnaugh</h1></center>
+
+    <center><h3>Maurice Karnaugh</h3></center>
+    <h5>
+        Maurice Karnaugh, nacido en la ciudad de Nueva York, se licenció en el City College de Nueva York y se doctoró en la Universidad de Yale. Fue miembro del personal técnico de los Bell Laboratories de 1952 a 1966 y director de investigación y desarrollo en la división de sistemas federales de AT&T de 1966 a 1970. En 1970 se incorporó a IBM como miembro del personal de investigación.
+    </h5>
+    <h5>
+        Karnaugh ha hecho contribuciones fundamentales a la aplicación de técnicas digitales tanto en la computación como en las telecomunicaciones. Sus áreas de interés más recientes incluyen los sistemas expertos y los métodos heurísticos de búsqueda.
+    </h5>
+    <h5>(About: Maurice Karnaugh, s. f.)</h5>
+
+    <center><h3>Diagramas de Karnaugh</h3></center>
+    <h5>
+        El diagrama de Karnaugh es un método gráfico cuyo objetivo es hallar términos que se pueden combinar en el caso de funciones booleanas que dependen de relativamente pocas variables. Este método fue introducido por Maurice Karnaugh en 1953. El diagrama de Karnaugh, o K-diagrama, proporciona un método visual para simplificar una forma normal disyuntiva, pero no son adecuados para automatizar este proceso.
+    </h5>
+    <h5>
+        Es importante resaltar tres conceptos que serán aplicados posteriormente en la minimización con K-diagramas en el álgebra de Boole:
+        <br><br>
+        1. Minitérmino: Es un término producto donde aparecen todas las variables de la función, con o sin su complemento, una única vez.
+        <br><br>
+        2. Maxitérmino: Es un término de suma donde aparecen todas las variables de la función, con o sin su complemento, una única vez.
+        <br><br>
+        3. Término canónico: Es toda suma o producto que contenga a todas las variables de una función. Puede combinar minitérminos en una forma normal disyuntiva (sumas) o maxitérminos en una forma normal conmutativa (productos).
+
+        Las funciones se acomodan en forma de matriz, representando la función en ella como coordenadas.
+    </h5>
+    <h5>(Vázquez, s. f.)</h5>
+
+    <center><h3>Ejemplo inicial</h3></center>
+    <h5>
+        Minimizar la siguiente expresión: f(a,b,c,d) =∑ (0,1,2,3,8,9,10,11)
+    </h5>
+
+    <h5><strong>Paso 1:</strong> Generar la tabla de verdad</h5>
+    <div class="img-container">
+        <div class="img-title">Imagen 1: Tabla de verdad</div>
+        <img src="media/img/K_Diagrama1.jpg" alt="Tabla de verdad">
+        <div class="img-caption-left">Generación de tabla de verdad</div>
+        <div class="img-caption-right">Zaldívar, s. f.</div>
+    </div>
+
+    <h5><strong>Paso 2:</strong> Colocamos los minitérminos en el mapa de Karnaugh</h5>
+    <div class="img-container">
+        <div class="img-title">Imagen 2</div>
+        <img src="media/img/K_Diagrama2.jpg" alt="Mapa de Karnaugh inicial">
+        <div class="img-caption-left">Mapa de Karnaugh inicial</div>
+        <div class="img-caption-right">Zaldívar, s. f.</div>
+    </div>
+
+    <h5>
+        <strong>Paso 3:</strong> Agrupamos los miniterminos en función de 2<sup>n</sup>, donde n=0, 1, 2, 3, 4. Hacemos conjuntos de 4
+    </h5>
+    <div class="img-container">
+        <div class="img-title">Imagen 3</div>
+        <img src="media/img/K_Diagrama3.jpg" alt="Agrupación de términos">
+        <div class="img-caption-left">Agrupación de términos</div>
+        <div class="img-caption-right">Zaldívar, s. f.</div>
+    </div>
+
+    <h5>
+        <strong>Paso 4:</strong> Obtener la expresión simplificada<br><br>
+        Para cada grupo formado, identificamos qué variables permanecen constantes. Las variables que cambian dentro del grupo se eliminan del término.<br><br>
+
+        - El grupo que abarca los minitérminos 0, 1, 2 y 3 lo representa las variables <strong>a'b'</strong>.
+        <br><br>
+        - El grupo que abarca los minitérminos 8, 9, 10 y 11 lo representa las variables <strong>ab'</strong>.
+
+        <br><br>
+        Observamos que ambos grupos pueden combinarse formando un solo grupo de 8 celdas (0, 1, 2, 3, 8, 9, 10, 11), lo cual nos permite una simplificación mayor.
+    </h5>
+    <div class="img-container">
+        <div class="img-title">Imagen 4</div>
+        <img src="media/img/K_Diagrama4.jpg" alt="Simplificación final">
+        <div class="img-caption-left">Simplificación final</div>
+        <div class="img-caption-right">Zaldívar, s. f.</div>
+    </div>
+
+    <h5> 
+        Para saber qué variable permanece constante en todo ese conjunto, analizamos las combinaciones binarios y notamos que la única constante en todos esos minitérminos es: b'
+    </h5>
+
+    <h5><strong>Finalmente:</strong> f(a,b,c,d)= <strong> b'</strong></h5>
+</body>
+</html>

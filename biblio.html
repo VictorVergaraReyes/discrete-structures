@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="Author" content="Equipo 2">
+    <script src="media/js/jq.js" type="text/javascript"></script>
+    <script src="media/js/m.js" type="text/javascript"></script>
+    <script src="media/js/ui.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="media/css/ui.css" type="text/css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(27, 27, 31, 0.85), rgba(27, 27, 31, 0.9)),
+                url('Imagenes/fondo.jpg') center/cover no-repeat fixed;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        section {
+            border-radius: 15px;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h1 {
+            color: #76c7c0;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .bibliografia {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bib-item {
+            margin: 15px 0;
+            line-height: 1.6;
+            max-width: 700px;
+            text-align: justify;
+            text-justify: inter-word;
+            padding: 0 20px;
+            hyphens: auto;
+        }
+
+        .bib-item em {
+            font-style: italic;
+        }
+
+        a {
+            color: rgb(179, 205, 203);
+            text-decoration: underline;
+            transition: color 0.3s;
+            word-break: break-all;
+        }
+
+        a:hover {
+            color: #3f79c5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>Bibliografía</h1>
+
+        <div class="bibliografia">
+            <p class="bib-item">1. About: Maurice Karnaugh. (s. f.). <a href="https://es.dbpedia.org/page/Maurice_Karnaugh" target="_blank">https://es.dbpedia.org/page/Maurice_Karnaugh</a></p>
+
+            <p class="bib-item">2. Álgebra booleana – sistemas digitales. (s. f.). <a href="https://virtual.cuautitlan.unam.mx/intar/sistdig/algebra-booleana/" target="_blank">https://virtual.cuautitlan.unam.mx/intar/sistdig/algebra-booleana/</a></p>
+
+            <p class="bib-item">3. Calculadoras Online. (2024, 29 septiembre). <em>Calculadora Mapa de Karnaugh online.</em> <a href="https://calculadorasonline.com/calculadora-mapa-de-karnaugh-online/" target="_blank">https://calculadorasonline.com/calculadora-mapa-de-karnaugh-online/</a></p>
+
+            <p class="bib-item">4. Lalaandrea. (2017, 13 junio). <em>Reducción Quine McCluskey.</em> Compilando Conocimiento. <a href="https://compilandoconocimiento.com/2017/06/13/reduccion-quine-mccluskey/" target="_blank">https://compilandoconocimiento.com/2017/06/13/reduccion-quine-mccluskey/</a></p>
+
+            <p class="bib-item">5. Salcedo, W. (s. f.). <em>Introducción a los Circuitos Lógicos.</em> Scribd. <a href="https://es.scribd.com/document/455336582/Introduccion-a-los-Circuitos-Logicos" target="_blank">https://es.scribd.com/document/455336582/Introduccion-a-los-Circuitos-Logicos</a></p>
+
+            <p class="bib-item">6. Shah, P. N. (s. f.). <em>Quine-McCluskey calculator.</em> <a href="https://atozmath.com/KMap.aspx?q=quine" target="_blank">https://atozmath.com/KMap.aspx?q=quine</a></p>
+
+            <p class="bib-item">7. The Editors of Encyclopaedia Britannica. (2025, 11 junio). <em>George Boole | Facts, Biography, death, Education, & Books.</em> Encyclopedia Britannica. <a href="https://www.britannica.com/biography/George-Boole" target="_blank">https://www.britannica.com/biography/George-Boole</a></p>
+
+            <p class="bib-item">8. Vázquez, D. (s. f.). <em>Mapas de Karnaugh.</em> <a href="https://suayed.cuautitlan.unam.mx/uapas/08_Mapas_Karnaugh/" target="_blank">https://suayed.cuautitlan.unam.mx/uapas/08_Mapas_Karnaugh/</a></p>
+        </div>
+    </section>
+</body>
+</html>
