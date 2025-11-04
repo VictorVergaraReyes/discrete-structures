@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probabilidad Discreta - Resumen</title>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #999; line-height: 1.6;">
+    
+    <h1 style="text-align: center; color: #6c8caf; border-bottom: 3px solid #3498db; padding-bottom: 15px; margin-bottom: 30px;">📊 Probabilidad Discreta</h1>
+    
+    <div style="border-left: 4px solid #3498db; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #85c1e9; margin-top: 0;">Variables Aleatorias Discretas</h2>
+        <p style="margin: 10px 0;">Funciones que asignan valores numéricos a experimentos aleatorios, donde los valores pueden ser <strong>enumerados</strong> (finitos o infinitos numerables).</p>
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #bdc3c7; margin-top: 15px;">
+            <strong style="color: #76d7c4;">Ejemplos:</strong>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Número de vehículos en un semáforo</li>
+                <li>Llamadas telefónicas en un día</li>
+                <li>Goles en un partido de fútbol</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="border-left: 4px solid #9b59b6; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #c39bd3; margin-top: 0;">Función de Probabilidad</h2>
+        <p style="margin: 10px 0;">Asigna una probabilidad a cada valor posible de la variable aleatoria discreta.</p>
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #bdc3c7; margin-top: 15px;">
+            <strong style="color: #76d7c4;">Propiedades fundamentales:</strong>
+            <ol style="margin: 10px 0; padding-left: 20px;">
+                <li><code style="padding: 2px 6px; border-radius: 3px; border: 1px solid #ddd;">f(x) ≥ 0</code> - Las probabilidades no son negativas</li>
+                <li><code style="padding: 2px 6px; border-radius: 3px; border: 1px solid #ddd;">Σf(x) = 1</code> - La suma de todas las probabilidades es 1</li>
+                <li><code style="padding: 2px 6px; border-radius: 3px; border: 1px solid #ddd;">P(X=x) = f(x)</code> - Probabilidad de un valor específico</li>
+            </ol>
+        </div>
+    </div>
+
+    <h2 style="color: #f1948a; text-align: center; margin: 40px 0 30px 0; font-size: 28px;">🎲 Distribuciones Discretas Importantes</h2>
+
+    <div style="display: grid; gap: 20px;">
+        
+        <div style="border: 2px solid #e67e22; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="color: #f39c12; margin-top: 0; display: flex; align-items: center;">
+                <span style="font-size: 24px; margin-right: 10px;">1️⃣</span> Bernoulli
+            </h3>
+            <p style="margin: 10px 0;"><strong>Descripción:</strong> Experimentos con solo dos resultados posibles: <span style="color: #7dcea0; font-weight: bold;">éxito (1)</span> o <span style="color: #f1948a; font-weight: bold;">fracaso (0)</span></p>
+            <p style="margin: 10px 0;"><strong>Fórmula:</strong> <code style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">P(X=x) = p^x(1-p)^(1-x)</code> para x = 0, 1</p>
+            <p style="margin: 10px 0; font-size: 14px; color: #bdc3c7;"><em>Ejemplos: Lanzar moneda, producto defectuoso/no defectuoso, aprobar/reprobar examen</em></p>
+        </div>
+
+        <div style="border: 2px solid #3498db; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="color: #85c1e9; margin-top: 0; display: flex; align-items: center;">
+                <span style="font-size: 24px; margin-right: 10px;">2️⃣</span> Binomial
+            </h3>
+            <p style="margin: 10px 0;"><strong>Descripción:</strong> Repetición de experimentos Bernoulli <strong>n veces</strong> con la misma probabilidad</p>
+            <p style="margin: 10px 0;"><strong>Fórmula:</strong> <code style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">P(X=x) = C(n,x) · p^x · (1-p)^(n-x)</code></p>
+            <p style="margin: 10px 0; font-size: 14px; color: #bdc3c7;"><em>Ejemplos: Focos defectuosos en lote, veces que cae sol en 5 lanzamientos</em></p>
+        </div>
+
+        <div style="border: 2px solid #9b59b6; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="color: #c39bd3; margin-top: 0; display: flex; align-items: center;">
+                <span style="font-size: 24px; margin-right: 10px;">3️⃣</span> Hipergeométrica
+            </h3>
+            <p style="margin: 10px 0;"><strong>Descripción:</strong> Muestreo <strong>sin reemplazo</strong> de una población finita</p>
+            <p style="margin: 10px 0;"><strong>Parámetros:</strong></p>
+            <ul style="margin: 5px 0; padding-left: 20px; font-size: 14px;">
+                <li><strong>N</strong> = tamaño de la población</li>
+                <li><strong>K</strong> = éxitos totales en población</li>
+                <li><strong>n</strong> = tamaño de muestra</li>
+                <li><strong>x</strong> = éxitos en la muestra</li>
+            </ul>
+            <p style="margin: 10px 0; font-size: 14px; color: #bdc3c7;"><em>Ejemplos: Pilas defectuosas de un lote, canicas de colores específicos</em></p>
+        </div>
+
+        <div style="border: 2px solid #1abc9c; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="color: #76d7c4; margin-top: 0; display: flex; align-items: center;">
+                <span style="font-size: 24px; margin-right: 10px;">4️⃣</span> Geométrica
+            </h3>
+            <p style="margin: 10px 0;"><strong>Descripción:</strong> Probabilidad de que el <strong>primer éxito</strong> ocurra en el intento x</p>
+            <p style="margin: 10px 0;"><strong>Fórmula:</strong> <code style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">P(X=x) = (1-p)^(x-1) · p</code> para x = 1, 2, 3...</p>
+            <p style="margin: 10px 0; font-size: 14px; color: #bdc3c7;"><em>Ejemplos: Intentos hasta sacar un 3 en dado, boletos de lotería hasta ganar</em></p>
+        </div>
+
+        <div style="border: 2px solid #e74c3c; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="color: #ec7063; margin-top: 0; display: flex; align-items: center;">
+                <span style="font-size: 24px; margin-right: 10px;">5️⃣</span> Poisson
+            </h3>
+            <p style="margin: 10px 0;"><strong>Descripción:</strong> Número de eventos en un <strong>intervalo de tiempo/espacio</strong> definido con tasa constante</p>
+            <p style="margin: 10px 0;"><strong>Fórmula:</strong> <code style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">P(X=x) = (e^(-λ) · λ^x) / x!</code></p>
+            <p style="margin: 10px 0;"><strong>λ</strong> = promedio de eventos en el intervalo</p>
+            <p style="margin: 10px 0; font-size: 14px; color: #bdc3c7;"><em>Ejemplos: Robos al día en ciudad, llamadas en 3 horas, pacientes por hora en hospital</em></p>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; border-radius: 10px; border: 2px solid #f39c12; text-align: center;">
+        <p style="margin: 0; font-size: 18px; color: #f8c471; font-weight: bold;">💡 Recuerda: Cada distribución modela un fenómeno específico con características únicas</p>
+    </div>
+
+</body>
+</html>
