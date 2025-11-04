@@ -1,128 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="Author" content="Equipo 6">
-    <script src="media/js/jq.js" type="text/javascript"></script>
-    <script src="media/js/m.js" type="text/javascript"></script>
-    <script src="media/js/ui.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="media/css/ui.css" type="text/css">
-    <link rel="stylesheet" href="media/css/portada.css" type="text/css">
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        body {
-            animation: fadeIn 0.8s ease-out;
-            background-color: #121212; 
-            color: #B3CDCB; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        h1,
-        h3 {
-            color: rgb(179, 205, 203);
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        h5 {
-            text-align: justify;
-            text-justify: inter-word;
-            margin: 15px auto 40px;
-            line-height: 1.6;
-            padding: 0 15px;
-            max-width: 900px;
-        }
-
-        ul {
-            padding-left: 20px;
-            max-width: 900px;
-            margin: 0 auto 40px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        .img-container-pair {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin: 40px auto 60px;
-            max-width: 900px;
-        }
-
-        .img-pair {
-            position: relative;
-            text-align: center;
-            max-width: 450px;
-        }
-
-        .img-pair img {
-            width: 100%;
-            border: none;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        }
-
-            .img-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #B3CDCB; 
-        }
-
-        .img-caption-left,
-        .img-caption-right {
-            font-size: 0.8em;
-            color: #999;
-            margin-top: 5px;
-            width: 48%;
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .img-caption-left {
-            text-align: left;
-        }
-
-        .img-caption-right {
-            text-align: right;
-        }
-
-        .img-pair {
-            position: relative;
-            text-align: center;
-            max-width: 450px;
-            margin-bottom: 40px; 
-        }
-
-        .img-caption-container {
-            width: 100%;
-            margin-top: -5px;
-            margin-bottom: 20px;
-        }
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probabilidad Condicional - Resumen</title>
 </head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #e8e8e8; line-height: 1.6;">
+    
+    <h1 style="text-align: center; color: #fff; border-bottom: 3px solid #5dade2; padding-bottom: 15px; margin-bottom: 30px;">🎯 Probabilidad Condicional</h1>
+    
+    <div style="border-left: 4px solid #5dade2; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #85c1e9; margin-top: 0;">¿Qué es la Probabilidad Condicional?</h2>
+        <p style="margin: 10px 0; color: #d5d8dc;">Permite evaluar la posibilidad de que ocurra un evento <strong style="color: #aed6f1;">A</strong> tomando en cuenta que otro evento <strong style="color: #aed6f1;">B</strong> ya ha sucedido. Es una forma de <strong style="color: #76d7c4;">actualizar nuestro conocimiento</strong> con nueva evidencia.</p>
+        
+        <div style="padding: 20px; border-radius: 8px; border: 2px solid #5dade2; margin-top: 15px;">
+            <p style="margin: 0; color: #f8f9f9; font-size: 18px; text-align: center;">
+                <strong>Fórmula Principal:</strong>
+            </p>
+            <p style="margin: 15px 0; color: #fff; font-size: 22px; text-align: center; font-family: 'Courier New', monospace;">
+                P(A|B) = P(A∩B) / P(B)
+            </p>
+            <p style="margin: 5px 0; color: #d5d8dc; font-size: 14px; text-align: center;">
+                donde P(B) > 0
+            </p>
+        </div>
 
-<body>
-    <center><h1>Probabiidad condicional</h1></center>
+        <p style="margin: 15px 0; color: #d5d8dc;">La probabilidad de A dado B depende directamente de la medida en que <strong style="color: #aed6f1;">A y B se superponen</strong> en el espacio muestral.</p>
+    </div>
+
+    <div style="border-left: 4px solid #bb8fce; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #d7bde2; margin-top: 0;">Eventos Independientes vs Dependientes</h2>
+        
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #bb8fce; margin-top: 15px;">
+            <h3 style="color: #e8daef; margin-top: 0;">✅ Eventos Independientes</h3>
+            <p style="margin: 10px 0; color: #d5d8dc;">La ocurrencia de uno <strong style="color: #aed6f1;">NO afecta</strong> la probabilidad del otro.</p>
+            <p style="margin: 10px 0; color: #fff; font-size: 18px; font-family: 'Courier New', monospace; text-align: center;">
+                P(A∩B) = P(A) · P(B)
+            </p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063; margin-top: 15px;">
+            <h3 style="color: #f5b7b1; margin-top: 0;">⚠️ Eventos Dependientes</h3>
+            <p style="margin: 10px 0; color: #d5d8dc;">La ocurrencia de uno <strong style="color: #f1948a;">SÍ altera</strong> la probabilidad del otro.</p>
+            <p style="margin: 5px 0; color: #d5d8dc; font-size: 14px;"><em>Ejemplo: Extraer cartas sin reemplazo</em></p>
+        </div>
+    </div>
+
+    <h2 style="color: #f8c471; text-align: center; margin: 40px 0 30px 0; font-size: 28px;">📐 Axiomas de la Probabilidad</h2>
+
+    <div style="padding: 20px; border-radius: 10px; border: 2px solid #f39c12; margin-bottom: 30px;">
+        <div style="margin-bottom: 15px;">
+            <p style="margin: 5px 0; color: #fdebd0; font-size: 16px;">
+                <strong style="color: #f8c471;">1.</strong> P(A) ≥ 0 
+                <span style="color: #d5d8dc; font-size: 14px; margin-left: 10px;">(La probabilidad es no negativa)</span>
+            </p>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <p style="margin: 5px 0; color: #fdebd0; font-size: 16px;">
+                <strong style="color: #f8c471;">2.</strong> P(S) = 1 
+                <span style="color: #d5d8dc; font-size: 14px; margin-left: 10px;">(El espacio muestral tiene probabilidad 1)</span>
+            </p>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <p style="margin: 5px 0; color: #fdebd0; font-size: 16px;">
+                <strong style="color: #f8c471;">3.</strong> P(A∪B) = P(A) + P(B) 
+                <span style="color: #d5d8dc; font-size: 14px; margin-left: 10px;">(Para eventos mutuamente excluyentes)</span>
+            </p>
+        </div>
+    </div>
+
+    <h3 style="color: #aed6f1; margin: 25px 0 15px 0;">Teoremas Fundamentales</h3>
+    <ul style="color: #d5d8dc; padding-left: 25px;">
+        <li style="margin-bottom: 10px;"><code style="color: #fff; padding: 3px 8px; border-radius: 4px; border: 1px solid #7fb3d5;">P(∅) = 0</code> - Probabilidad del conjunto vacío</li>
+        <li style="margin-bottom: 10px;"><code style="color: #fff; padding: 3px 8px; border-radius: 4px; border: 1px solid #7fb3d5;">P(Ā) = 1 - P(A)</code> - Probabilidad del complemento</li>
+        <li style="margin-bottom: 10px;">Si A⊂B entonces <code style="color: #fff; padding: 3px 8px; border-radius: 4px; border: 1px solid #7fb3d5;">P(A) ≤ P(B)</code></li>
+    </ul>
+
+    <h2 style="color: #76d7c4; text-align: center; margin: 40px 0 30px 0; font-size: 28px;">🔑 Teoremas Clave</h2>
+
+    <div style="border: 2px solid #48c9b0; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+        <h3 style="color: #76d7c4; margin-top: 0; display: flex; align-items: center;">
+            <span style="font-size: 24px; margin-right: 10px;">×</span> Teorema de la Multiplicación
+        </h3>
+        <p style="margin: 10px 0; color: #d5d8dc;">Establece la relación entre la probabilidad conjunta y las probabilidades condicionales.</p>
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #76d7c4; margin-top: 15px;">
+            <p style="margin: 10px 0; color: #fff; font-size: 18px; font-family: 'Courier New', monospace; text-align: center;">
+                P(A∩B) = P(A|B) · P(B)
+            </p>
+            <p style="margin: 10px 0; color: #fff; font-size: 18px; font-family: 'Courier New', monospace; text-align: center;">
+                P(A∩B) = P(B|A) · P(A)
+            </p>
+        </div>
+        <p style="margin: 15px 0 5px 0; color: #abebc6; font-size: 14px;">
+            <strong>Significado:</strong> La probabilidad de que ocurran dos eventos depende no solo de la probabilidad de cada uno, sino también de la influencia que uno ejerce sobre el otro.
+        </p>
+    </div>
+
+    <div style="border: 2px solid #85c1e9; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+        <h3 style="color: #85c1e9; margin-top: 0; display: flex; align-items: center;">
+            <span style="font-size: 24px; margin-right: 10px;">∑</span> Teorema de la Probabilidad Total
+        </h3>
+        <p style="margin: 10px 0; color: #d5d8dc;">Permite calcular la probabilidad de un evento como la <strong style="color: #aed6f1;">suma ponderada</strong> de sus probabilidades condicionadas respecto a una partición del espacio muestral.</p>
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #85c1e9; margin-top: 15px;">
+            <p style="margin: 5px 0; color: #d5d8dc; text-align: center;">
+                Sean B₁, B₂, ..., Bₖ una partición del espacio muestral S:
+            </p>
+            <p style="margin: 15px 0; color: #fff; font-size: 18px; font-family: 'Courier New', monospace; text-align: center;">
+                P(A) = Σ P(A|Bᵢ) · P(Bᵢ)
+            </p>
+        </div>
+        <p style="margin: 15px 0 5px 0; color: #d4e6f1; font-size: 14px;">
+            <strong>Garantiza:</strong> Que toda estimación sobre un evento se sustente en la totalidad de sus posibles causas o contextos.
+        </p>
+    </div>
+
+    <div style="border: 2px solid #f7dc6f; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+        <h3 style="color: #f9e79f; margin-top: 0; display: flex; align-items: center;">
+            <span style="font-size: 24px; margin-right: 10px;">🧮</span> Teorema de Bayes
+        </h3>
+        <p style="margin: 10px 0; color: #d5d8dc;">Permite <strong style="color: #f8c471;">actualizar probabilidades</strong> (a priori) cuando se recibe nueva información. Es fundamental en IA, diagnóstico médico, inferencia estadística.</p>
+        
+        <div style="padding: 20px; border-radius: 8px; border: 2px solid #f7dc6f; margin: 15px 0;">
+            <p style="margin: 0 0 15px 0; color: #fff; font-size: 20px; text-align: center; font-family: 'Courier New', monospace;">
+                P(Bᵢ|A) = [P(A|Bᵢ) · P(Bᵢ)] / P(A)
+            </p>
+            <p style="margin: 10px 0; color: #d5d8dc; text-align: center; font-size: 14px;">
+                donde P(A) se calcula con el Teorema de la Probabilidad Total
+            </p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #d4ac0d; margin-top: 15px;">
+            <p style="margin: 5px 0; color: #fdebd0; font-size: 14px;">
+                <strong style="color: #f8c471;">💡 Dato curioso:</strong> Alan Turing usó principios bayesianos durante la Segunda Guerra Mundial para descifrar los códigos nazis de la máquina Enigma, cambiando el curso de la guerra.
+            </p>
+        </div>
+
+        <p style="margin: 15px 0 5px 0; color: #fcf3cf; font-size: 14px;">
+            <strong>Filosofía:</strong> Bayes nos enseña que ninguna certeza es absoluta. Es un marco para la revisión de creencias frente a nueva evidencia.
+        </p>
+    </div>
+
+    <div style="margin-top: 40px; padding: 25px; border-radius: 10px; border: 2px solid #bb8fce; text-align: center;">
+        <p style="margin: 0; font-size: 18px; color: #e8daef; font-weight: bold;">
+            🔄 La probabilidad condicional es la base del razonamiento probabilístico moderno
+        </p>
+        <p style="margin: 10px 0 0 0; font-size: 14px; color: #d5d8dc;">
+            Permite inferir, predecir y actualizar conocimiento basándose en evidencia
+        </p>
+    </div>
 
 </body>
-
 </html>
