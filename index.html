@@ -17,15 +17,15 @@
 	<!-- Icono en pestaña -->
     <link rel="icon" href="media/img/PagWeb.png">
 
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+
 			$("#a1").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='portada.html'></iframe>");});
 			$("#a2").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='temario.html'></iframe>");});
 			$("#a3").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='objetivo.html'></iframe>");});
 			$("#a4").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='introduccion.html'></iframe>");});
-			$("#a5").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='algebraBoole.html'></iframe>");});
+			$("#software").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='algebraBoole.html'></iframe>");});
 			$("#a6").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='distribucionBinomial.html'></iframe>");});
 			$("#a7").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='distribucionHipergeometrica.html'></iframe>");});
 			$("#a8").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='distribucionGeometrica.html'></iframe>");});
@@ -37,7 +37,7 @@
 			$("#a14").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='cuestionario.html'></iframe>");});
 			$("#a15").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='conclusion.html'></iframe>");});
 			$("#a16").click(function(){$("iframe#contents").replaceWith("<iframe id='contents' src='biblio.html'></iframe>");});
-			
+
 
 		});
 	</script>
@@ -48,85 +48,88 @@
 	<div id="wrapper">
 
 		<nav id="nav-left">
-			
+
 			<ul id="index">
 				<h2>Índice</h2>
 				<a id="a1" href="#"><li><span>Inicio</span></li></a>
-				<a id="a2" href="#"><li><span>Temario</span></li></a>
+				<!-- <a id="a2" href="#"><li><span>Temario</span></li></a> -->
 				<a id="a3"href="#"><li><span></span>Objetivo</li></a>
-				<a id="a4" href="#"><li><span>Introducción</span></li></a>							
-				<a id="a5"href="#"><li><span>Software de probabilidad discreta</span></li></a>
-				<a id="a5"href="#"><li><span>Distribución Bernoulli</span></li></a>
+				<a id="a4" href="#"><li><span>Introducción</span></li></a>
+				<!-- <a id="a5"href="#"><li><span>Distribución Bernoulli</span></li></a>
 				<a id="a6"href="#"><li><span>Distribución binomial</span></li></a>
 				<a id="a7"href="#"><li><span>Distribución hipergeométrica</span></li></a>
 				<a id="a8"href="#"><li><span>Distribución geométrica</span></li></a>
-				<a id="a9"href="#"><li><span>Distribución Poisson</span></li></a>
+				<a id="a9"href="#"><li><span>Distribución Poisson</span></li></a> -->
+				<a id="probabilidadDiscreta"href="#"><li><span>Probabilidad discreta</span></li></a>
 				<a id="a10"href="#"><li><span>Probabilidad condicional</span></li></a>
-				<a id="a11"href="#"><li><span>Teorema de Bayes</span></li></a>
-				<a id="a12"href="#"><li><span>Ejemplos</span></li></a>				
-				<a id="a13"href="#"><li><span>Video</span></li></a>				
-				<a id="a14"href="#"><li><span>Cuestionario</span></li></a>					
-				<a id="a15"href="#"><li><span>Conclusión</span></li></a>				
+				<!-- <a id="a11"href="#"><li><span>Teorema de Bayes</span></li></a> -->
+				<a id="a12"href="#"><li><span>Ejemplos</span></li></a>
+				<a id="a13"href="#"><li><span>Video</span></li></a>
+				<a id="software"href="#"><li><span>Software</span></li></a>
+				<a id="a14"href="#"><li><span>Cuestionario</span></li></a>
+				<!-- <a id="a15"href="#"><li><span>Conclusión</span></li></a> -->
 				<a id="a16"href="#"><li><span>Bibliografía</span></li></a>
 			</ul>
-		
-			
-			<ul id="themes">
-				<h2>Temas</h2>
-				<li id="nlt-theme3"></li>
-				<li id="nlt-theme2"></li>
-				<li id="nlt-theme1"></li>
-				<li id="nlt-theme4"></li>
-				<li id="nlt-theme5"></li>
-				<li id="nlt-theme6"></li>
-				<li id="nlt-theme7"></li>
-				<li id="nlt-theme8"></li>
-				<li id="nlt-theme9"></li>
-			</ul>
+
+
+			<div id="themes">				
+				<select id="themes-select"">
+					<option value="">Seleccionar tema</option>
+					<option value="nlt-theme1">Tema 1</option>
+					<option value="nlt-theme2">Tema 2</option>
+					<option value="nlt-theme3">Tema 3</option>
+					<option value="nlt-theme4">Tema 4</option>
+					<option value="nlt-theme5">Tema 5</option>
+					<option value="nlt-theme6">Tema 6</option>
+					<option value="nlt-theme7">Tema 7</option>
+					<option value="nlt-theme8">Tema 8</option>
+					<option value="nlt-theme9">Tema 9</option>
+				</select>
+			</div>
 		</nav>
-		
+
 		<nav id="nav-right">
-			
+
 			<ul id="files">
 				<h2>Archivos</h2>
 				<li><a href="media/pdf/Documentacion_Equipo6.pdf" target="_blank">Documentación completa</a></li>
 				<li><a href="media/pdf/Cuestionario_Equipo6.pdf" target="_blank">Cuestionario y respuestas</a></li>
-				
+
 			</ul>
-			
+
 			<ul id="contact">
 				<h2>Contacto</h2>
-				<li><span>Vergara Reyes Gilberto</span></li>				
+				<li><span>Vergara Reyes Gilberto</span></li>
 				<li><h7><span>dominicambrosio215@gmail.com</span></h7></li>
-				<li><span>Fernández Bautista, Ciria Andrea</span></li>				
+				<li><span>Fernández Bautista, Ciria Andrea</span></li>
 				<li><h7><span>andrea.cfb09@gmail.com</span></h7></li>
-				<li><span>Hernández Andrade, Miguel Ángel</span></li>				
+				<li><span>Hernández Andrade, Miguel Ángel</span></li>
 				<li><h7><span>angelmahaz103@gmail.com</span></h7></li>
-				<li><span>Hernández Nájera, Itzel Adriana</span></li>				
+				<li><span>Hernández Nájera, Itzel Adriana</span></li>
 				<li><h7><span>itzel.adri366@gmail.com</span></h7></li>
-				<li><span>Martínez García, José Eduardo</span></li>				
+				<li><span>Martínez García, José Eduardo</span></li>
 				<li><h7><span>joseeduardo.unam.1234@gmail.com</span></h7></li>
-				<li><span>Martínez Martínez, Iván</span></li>				
+				<li><span>Martínez Martínez, Iván</span></li>
 				<li><h7><span>ivan141mtz@gmail.com</span></h7></li>
-				<li><span>Mendoza Camacho, Estrella de Maria</span></li>				
+				<li><span>Mendoza Camacho, Estrella de Maria</span></li>
 				<li><h7><span>estrellademaria@comunidad.unam.mx</span></h7></li>
-				<li><span>Rivera Rodríguez, Hugo Abraham</span></li>				
+				<li><span>Rivera Rodríguez, Hugo Abraham</span></li>
 				<li><h7><span>hugo.abraham@comunidad.unam.mx</span></h7></li>
-			</ul>	
-			
+			</ul>
+
 		</nav>
-		
+
 		<div id="nav-left-trigger"></div>
-		<div id="nav-right-trigger"></div>	
-		<div id="theme" class="theme1">			
-			<iframe id="contents" src="portada.html"></iframe>		
-		</div>		
-		
+		<div id="nav-right-trigger"></div>
+		<div id="theme" class="theme1">
+			<iframe id="contents" src="portada.html"></iframe>
+		</div>
+
 		<footer id="footer">
 			<img id="logounam" src="media/img/logo_unam.png">
 			<img id="logofi" src="media/img/logo_fi.png">
 		</footer>
-				
+
 	</div>
 </body>
 

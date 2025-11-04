@@ -103,5 +103,18 @@ $(document).ready(function() {
 	$theme9.click( function() {
 		$theme.removeClass().addClass('theme9');
 	});
-		
+
+	/*
+	THEME SELECT DROPDOWN
+	==============================================================
+	*/
+
+	$('#themes-select').change(function() {
+		var selectedTheme = $(this).val();
+		if (selectedTheme) {
+			var themeNumber = selectedTheme.replace('nlt-theme', '');
+			$theme.removeClass().addClass('theme' + themeNumber);
+		}
+	});
+
 });

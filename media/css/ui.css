@@ -285,6 +285,8 @@ LEFT & RIGHT BARS
 #nav-left ul#index {
   position: absolute;
   top: 0;
+  height: 90vh;
+  overflow-y: auto;
 }
 #nav-left ul#index h2 {
   background: url(../img/ui_nl-index.png) no-repeat 15px center;
@@ -296,7 +298,8 @@ LEFT & RIGHT BARS
 *+html #nav-left ul#index li {
   border-bottom: 1px solid #333333;
 }
-#nav-left ul#themes {
+#nav-left ul#themes,
+#nav-left div#themes {
   position: absolute;
   bottom: 0;
 }
@@ -309,10 +312,16 @@ LEFT & RIGHT BARS
 @media all and (min-width:0) {
   html #nav-left ul#themes { display: block\0/; }  /* IE9-IE10pp4 */
 }
-#nav-left ul#themes h2 {
+#nav-left ul#themes h2,
+#nav-left div#themes h2 {
   background: url(../img/ui_nl-themes.png) no-repeat 15px center;
   border-top: 1px solid #666666;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+#nav-left div#themes select {
+  width: 180px;
+  margin: 0 0 15px 20px;
+  padding: 8px;
 }
 #nav-left ul#themes li {
   position: relative;
@@ -330,7 +339,7 @@ LEFT & RIGHT BARS
   -moz-background-size: cover !important;
   -o-background-size: cover !important;
   background-size: cover !important;
-  background-repeat: no-repeat:
+  background-repeat: no-repeat;
 }
 #nav-left ul#themes li:hover {
   border: solid 1px #ffffff;
