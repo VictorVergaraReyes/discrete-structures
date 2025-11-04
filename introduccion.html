@@ -1,87 +1,365 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="Author" content="Equipo 2">
-    <script src="media/js/jq.js" type="text/javascript"></script>
-    <script src="media/js/m.js" type="text/javascript"></script>
-    <script src="media/js/ui.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="media/css/ui.css" type="text/css">
-    <link rel="icon" href="media/img/icono.png">
-    <style>
-        section {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        
-        h5 {
-            display: block;
-            margin: 15px auto;
-            text-align: justify;
-            max-width: 700px;
-            text-justify: inter-word;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            color: #3498db;
-            font-weight: bold;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            animation: fadeIn 0.8s ease-out;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a la Probabilidad - Resumen</title>
 </head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; color: #e8e8e8; line-height: 1.7;">
+    
+    <h1 style="text-align: center; color: #fff; border-bottom: 3px solid #f39c12; padding-bottom: 15px; margin-bottom: 40px;">🎲 Introducción a la Probabilidad</h1>
+    
+    <!-- HISTORIA Y CONCEPTO -->
+    <div style="border-left: 4px solid #f39c12; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #f8c471; margin-top: 0;">📜 Historia y Concepto</h2>
+        <p style="margin: 10px 0; color: #d5d8dc;">
+            La probabilidad es el <strong style="color: #f8c471;">estudio del azar y la incertidumbre</strong> en situaciones donde varios posibles sucesos pueden ocurrir. Nació hace ~300 años del interés por obtener ventajas en juegos de azar.
+        </p>
+        
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #f39c12; margin-top: 15px;">
+            <p style="color: #fdebd0; margin: 5px 0;"><strong>🎯 Pioneros:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                Pierre de Fermat y Blaise Pascal (siglo XVII) establecieron los cimientos de la teoría moderna de probabilidad
+            </p>
+        </div>
 
-<body>
-    <section>
-        <br><br><br>
-        <h1><t>Introducción a la probabilidad</h1>
-        <br>
-        <h5>
-            Dentro de la revolución digital se encuentra un concepto fundamental e importante: el álgebra booleana</span>. Esta poderosa herramienta matemática, desarrollada por George Boole en el siglo XIX, se ha convertido en la base de todos los sistemas digitales modernos. Desde los procesadores más avanzados hasta los dispositivos los más simples.
-        </h5>
+        <h3 style="color: #f8c471; margin: 20px 0 10px 0;">Aplicaciones modernas:</h3>
+        <ul style="color: #d5d8dc; padding-left: 25px; margin: 10px 0;">
+            <li>🤖 Ciencia de datos y aprendizaje automático</li>
+            <li>💰 Finanzas y seguros (actuarios)</li>
+            <li>⚛️ Física cuántica</li>
+            <li>📊 Estadística e inferencia</li>
+        </ul>
+    </div>
+
+    <!-- DEFINICIÓN BÁSICA -->
+    <div style="border-left: 4px solid #5dade2; padding-left: 20px; margin-bottom: 30px;">
+        <h2 style="color: #85c1e9; margin-top: 0;">📐 Definición Básica</h2>
+        <p style="margin: 10px 0; color: #d5d8dc;">
+            La probabilidad es un <strong style="color: #aed6f1;">cálculo matemático</strong> que establece todas las posibilidades de que ocurra un fenómeno bajo circunstancias de azar.
+        </p>
         
+        <div style="padding: 20px; border-radius: 10px; border: 2px solid #5dade2; margin-top: 20px; text-align: center;">
+            <p style="margin: 0 0 10px 0; color: #aed6f1; font-size: 18px;"><strong>Rango de la probabilidad:</strong></p>
+            <p style="margin: 0; color: #fff; font-size: 24px; font-family: 'Courier New', monospace;">
+                0 ≤ P(A) ≤ 1
+            </p>
+            <div style="margin-top: 20px;">
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    <strong style="color: #ec7063;">P(A) = 0</strong> → Evento imposible (nunca ocurrirá)
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    <strong style="color: #76d7c4;">P(A) = 1</strong> → Evento seguro (ocurrirá con certeza)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONCEPTOS FUNDAMENTALES -->
+    <h2 style="color: #f8c471; text-align: center; margin: 50px 0 30px 0; font-size: 28px;">🎯 Conceptos Fundamentales</h2>
+
+    <!-- EXPERIMENTO -->
+    <div style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #76d7c4; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">🔬</span> Experimento
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            Cualquier acción o proceso cuyo resultado está sujeto a la <strong style="color: #abebc6;">incertidumbre</strong>. Cada ejecución genera un resultado que no se puede predecir con certeza.
+        </p>
+        <p style="color: #abebc6; margin: 10px 0; font-size: 14px;">
+            <em>Ejemplos: Lanzar un dado, extraer una carta, medir el tiempo de llegada de un cliente</em>
+        </p>
+    </div>
+
+    <!-- ESPACIO MUESTRAL -->
+    <div style="border: 2px solid #85c1e9; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #aed6f1; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">📦</span> Espacio Muestral (S)
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            El conjunto de <strong style="color: #aed6f1;">todos los posibles resultados</strong> de un experimento.
+        </p>
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #85c1e9; margin-top: 15px;">
+            <p style="color: #d4e6f1; margin: 5px 0;"><strong>Ejemplo:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0;">
+                Lanzar un dado: S = {1, 2, 3, 4, 5, 6}
+            </p>
+            <p style="color: #d5d8dc; margin: 5px 0;">
+                Lanzar una moneda: S = {cara, cruz} o S = {H, T}
+            </p>
+        </div>
+    </div>
+
+    <!-- EVENTO -->
+    <div style="border: 2px solid #bb8fce; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #d7bde2; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">🎯</span> Evento
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            Cualquier <strong style="color: #d7bde2;">subconjunto del espacio muestral</strong>. Es una colección específica de resultados que nos interesa.
+        </p>
         
-        <h1><t> Métodos de Minimización </h1>
-        <h5>
-            El presente tutorial cubre tres técnicas fundamentales para simplificar funciones booleanas:
-        </h5>
-        <h5>
-            1. Método Algebraico</span><br>
-                - Emplea reglas y teoremas del álgebra booleana<br>
-                - Requiere manipulación matemática de expresiones<br>
-                - Ideal para simplificaciones básicas y conceptuales
-        </h5>
-        <h5>
-            2. Método de Quine-McCluskey</span><br>
-                - Enfoque sistemático y tabular<br>
-                - Efectivo para funciones con múltiples variables<br>
-                - Permite minimización completa mediante algoritmo
-        </h5>
-        <h5>
-            3. Mapas de Karnaugh</span><br>
-                - Representación visual intuitiva<br>
-                - Facilita la identificación de patrones<br>
-                - Especialmente útil para 2-5 variables
-        </h5>
-        <br><br>
-    </section>
+        <h4 style="color: #e8daef; margin: 20px 0 10px 0;">Tipos de eventos:</h4>
+        <ul style="color: #d5d8dc; padding-left: 25px; margin: 10px 0;">
+            <li style="margin-bottom: 8px;">
+                <strong style="color: #e8daef;">Simple:</strong> Contiene un solo resultado. Ej: {5}
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong style="color: #e8daef;">Compuesto:</strong> Contiene múltiples resultados. Ej: {2, 4, 6}
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong style="color: #ec7063;">Imposible (∅):</strong> Nunca ocurre. Ej: obtener 7 en un dado
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong style="color: #76d7c4;">Seguro (S):</strong> Siempre ocurre. Ej: obtener 1-6 en un dado
+            </li>
+        </ul>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #bb8fce; margin-top: 20px;">
+            <p style="color: #e8daef; margin: 5px 0;"><strong>Ejemplo completo:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                3 vehículos giran izquierda (L) o derecha (R):
+            </p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                <strong>S</strong> = {LLL, RLL, LRL, LLR, LRR, RLR, RRL, RRR}
+            </p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                <strong>Evento A</strong> = "exactamente uno gira a derecha" = {RLL, LRL, LLR}
+            </p>
+        </div>
+    </div>
+
+    <!-- OPERACIONES CON EVENTOS -->
+    <h2 style="color: #f8c471; text-align: center; margin: 50px 0 30px 0; font-size: 28px;">⚙️ Operaciones con Eventos</h2>
+
+    <div style="border: 2px solid #5dade2; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: #85c1e9; margin-top: 0;">
+                <span style="margin-right: 10px;">∪</span> Unión (A∪B)
+            </h3>
+            <p style="color: #d5d8dc; margin: 10px 0;">
+                El evento que ocurre si <strong style="color: #aed6f1;">A ocurre O B ocurre</strong> (o ambos).
+            </p>
+            <p style="color: #aed6f1; margin: 5px 0; font-size: 14px;">
+                Ejemplo: A = {a, b, c}, B = {b, c, d, e} → A∪B = {a, b, c, d, e}
+            </p>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: #85c1e9; margin-top: 0;">
+                <span style="margin-right: 10px;">∩</span> Intersección (A∩B)
+            </h3>
+            <p style="color: #d5d8dc; margin: 10px 0;">
+                El evento que ocurre si <strong style="color: #aed6f1;">A Y B ocurren simultáneamente</strong>.
+            </p>
+            <p style="color: #aed6f1; margin: 5px 0; font-size: 14px;">
+                Ejemplo: Estudiantes de ingeniería (E) que son mujeres (F) → E∩F
+            </p>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: #85c1e9; margin-top: 0;">
+                <span style="margin-right: 10px;">ᶜ</span> Complemento (Aᶜ o A')
+            </h3>
+            <p style="color: #d5d8dc; margin: 10px 0;">
+                El evento que ocurre si <strong style="color: #aed6f1;">A NO ocurre</strong>. Todos los resultados que no están en A.
+            </p>
+            <p style="color: #aed6f1; margin: 5px 0; font-size: 14px;">
+                Ejemplo: Si R = carta roja, entonces Rᶜ = carta negra
+            </p>
+        </div>
+
+        <div>
+            <h3 style="color: #85c1e9; margin-top: 0;">
+                <span style="margin-right: 10px;">∅</span> Eventos Mutuamente Excluyentes
+            </h3>
+            <p style="color: #d5d8dc; margin: 10px 0;">
+                Dos eventos que <strong style="color: #ec7063;">NO pueden ocurrir al mismo tiempo</strong>. Su intersección es vacía: A∩B = ∅
+            </p>
+            <p style="color: #aed6f1; margin: 5px 0; font-size: 14px;">
+                Ejemplo: Al lanzar una moneda, {cara} y {cruz} son mutuamente excluyentes
+            </p>
+        </div>
+    </div>
+
+    <!-- TÉCNICAS DE CONTEO -->
+    <h2 style="color: #f39c12; text-align: center; margin: 50px 0 30px 0; font-size: 28px;">🔢 Técnicas de Conteo</h2>
+
+    <!-- PRINCIPIO FUNDAMENTAL -->
+    <div style="border: 2px solid #f39c12; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #f8c471; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">×</span> Principio Fundamental del Conteo
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            Si una operación se puede hacer en <strong style="color: #f8c471;">n₁ formas</strong>, y para cada una se puede realizar una segunda operación en <strong style="color: #f8c471;">n₂ formas</strong>, entonces las dos operaciones se pueden ejecutar juntas de <strong style="color: #f8c471;">n₁ × n₂ formas</strong>.
+        </p>
+        
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #f39c12; margin-top: 15px;">
+            <p style="color: #fdebd0; margin: 5px 0;"><strong>Ejemplo:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                Lanzar dos dados: Primer dado = 6 formas, Segundo dado = 6 formas
+            </p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                Total de resultados = 6 × 6 = 36
+            </p>
+        </div>
+
+        <p style="color: #f8c471; margin: 20px 0 10px 0;"><strong>Forma general:</strong></p>
+        <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0; text-align: center; font-size: 18px;">
+            Total = n₁ × n₂ × n₃ × ... × nₖ
+        </p>
+    </div>
+
+    <!-- PERMUTACIONES -->
+    <div style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #76d7c4; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">🔄</span> Permutaciones
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            Arreglos de elementos donde el <strong style="color: #76d7c4;">ORDEN SÍ IMPORTA</strong>. Cada ordenación diferente cuenta como un resultado distinto.
+        </p>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #48c9b0; margin: 15px 0;">
+            <p style="color: #abebc6; margin: 5px 0;"><strong>Ejemplo simple:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                Con dígitos {1, 2, 3}, las permutaciones son:
+            </p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                123, 132, 213, 231, 312, 321 → 6 permutaciones
+            </p>
+        </div>
+
+        <h4 style="color: #76d7c4; margin: 20px 0 10px 0;">Fórmulas:</h4>
+        
+        <div style="margin-bottom: 15px;">
+            <p style="color: #abebc6; margin: 5px 0;"><strong>Permutación de n elementos:</strong></p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0; font-size: 18px;">
+                Pₙ = n! = n × (n-1) × (n-2) × ... × 1
+            </p>
+        </div>
+
+        <div>
+            <p style="color: #abebc6; margin: 5px 0;"><strong>Permutación de r elementos de n:</strong></p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0; font-size: 18px;">
+                ₙPᵣ = n! / (n-r)!
+            </p>
+            <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                <em>Útil para elegir presidente, vicepresidente, secretario (el orden importa)</em>
+            </p>
+        </div>
+    </div>
+
+    <!-- COMBINACIONES -->
+    <div style="border: 2px solid #bb8fce; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <h3 style="color: #d7bde2; margin-top: 0; font-size: 22px;">
+            <span style="margin-right: 10px;">🎯</span> Combinaciones
+        </h3>
+        <p style="color: #d5d8dc; margin: 10px 0;">
+            Agrupaciones de elementos donde el <strong style="color: #d7bde2;">ORDEN NO IMPORTA</strong>. Solo interesa qué elementos se seleccionan, no su posición.
+        </p>
+
+        <div style="padding: 20px; border-radius: 8px; border: 1px solid #bb8fce; margin: 15px 0;">
+            <p style="color: #e8daef; margin: 5px 0;"><strong>Fórmula:</strong></p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 20px; text-align: center;">
+                ₙCᵣ = n! / [r! × (n-r)!]
+            </p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #bb8fce; margin-top: 15px;">
+            <p style="color: #e8daef; margin: 5px 0;"><strong>Ejemplo:</strong></p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                Escoger 3 proveedores de 5 disponibles:
+            </p>
+            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                ₅C₃ = 5! / (3! × 2!) = (5 × 4) / (2 × 1) = 10 formas
+            </p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #d4ac0d; margin-top: 20px;">
+            <p style="color: #fdebd0; margin: 5px 0; font-size: 14px;">
+                <strong>💡 Clave:</strong> Usa permutaciones cuando el orden importa (presidente, secretario). Usa combinaciones cuando solo importa el grupo seleccionado (comité, equipo).
+            </p>
+        </div>
+    </div>
+
+    <!-- AXIOMAS DE PROBABILIDAD -->
+    <h2 style="color: #ec7063; text-align: center; margin: 50px 0 30px 0; font-size: 28px;">📏 Axiomas de Probabilidad (Kolmogorov)</h2>
+
+    <div style="border: 2px solid #ec7063; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063; margin-bottom: 15px;">
+            <p style="color: #f5b7b1; margin: 5px 0;"><strong>1.</strong> P(Aᶜ) = 1 - P(A)</p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">La probabilidad del complemento</p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063; margin-bottom: 15px;">
+            <p style="color: #f5b7b1; margin: 5px 0;"><strong>2.</strong> P(∅) = 0</p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">La probabilidad del evento imposible es cero</p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063; margin-bottom: 15px;">
+            <p style="color: #f5b7b1; margin: 5px 0;"><strong>3.</strong> Si A⊂B, entonces P(A) ≤ P(B)</p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">Si A está contenido en B, su probabilidad es menor o igual</p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063; margin-bottom: 15px;">
+            <p style="color: #f5b7b1; margin: 5px 0;"><strong>4.</strong> 0 ≤ P(A) ≤ 1</p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">Toda probabilidad está entre 0 y 1</p>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; border: 1px solid #ec7063;">
+            <p style="color: #f5b7b1; margin: 5px 0;"><strong>5.</strong> P(A∪B) = P(A) + P(B) - P(A∩B)</p>
+            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">Regla de la adición (incluye corrección por superposición)</p>
+        </div>
+    </div>
+
+    <!-- TABLA DE ESPACIOS DISCRETOS -->
+    <div style="border: 2px solid #85c1e9; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+        <h3 style="color: #aed6f1; margin-top: 0; text-align: center; font-size: 22px;">📊 Probabilidad en Espacios Discretos</h3>
+        
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #85c1e9;">
+                        <th style="padding: 12px; text-align: left; color: #aed6f1; font-size: 16px;">Concepto</th>
+                        <th style="padding: 12px; text-align: left; color: #aed6f1; font-size: 16px;">Definición</th>
+                        <th style="padding: 12px; text-align: left; color: #aed6f1; font-size: 16px;">Notación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #5dade2;">
+                        <td style="padding: 12px; color: #f8c471;"><strong>Espacio muestral</strong></td>
+                        <td style="padding: 12px; color: #d5d8dc; font-size: 14px;">Conjunto de todos los posibles resultados (contable)</td>
+                        <td style="padding: 12px; color: #fff; font-family: 'Courier New', monospace;">S = {e₁, e₂, e₃...}</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #5dade2;">
+                        <td style="padding: 12px; color: #f8c471;"><strong>Resultado simple</strong></td>
+                        <td style="padding: 12px; color: #d5d8dc; font-size: 14px;">Un elemento individual del espacio muestral</td>
+                        <td style="padding: 12px; color: #fff; font-family: 'Courier New', monospace;">e₁ ∈ S</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #5dade2;">
+                        <td style="padding: 12px; color: #f8c471;"><strong>Evento</strong></td>
+                        <td style="padding: 12px; color: #d5d8dc; font-size: 14px;">Cualquier subconjunto de S</td>
+                        <td style="padding: 12px; color: #fff; font-family: 'Courier New', monospace;">E ⊆ S</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; color: #f8c471;"><strong>Función de probabilidad</strong></td>
+                        <td style="padding: 12px; color: #d5d8dc; font-size: 14px;">Asigna un valor real a cada evento</td>
+                        <td style="padding: 12px; color: #fff; font-family: 'Courier New', monospace;">P(E)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div style="margin-top: 50px; padding: 25px; border-radius: 10px; border: 2px solid #f39c12; text-align: center;">
+        <p style="margin: 0 0 10px 0; font-size: 20px; color: #f8c471; font-weight: bold;">
+            🎓 La probabilidad nos ofrece una lógica de la incertidumbre
+        </p>
+        <p style="margin: 0; font-size: 14px; color: #d5d8dc;">
+            Nos permite tomar decisiones informadas en un mundo inherentemente aleatorio
+        </p>
+    </div>
+
 </body>
-
 </html>
