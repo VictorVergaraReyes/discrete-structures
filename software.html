@@ -56,6 +56,16 @@
             <p style="margin: 5px 0;"><strong>Interpretación:</strong></p>
             <p id="interpretacion" style="margin: 5px 0;"></p>
         </div>
+
+        <!-- Gráfico de visualización -->
+        <div style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+            <h3 style="color: #fff; margin-top: 0; text-align: center;">Visualización del Teorema de Bayes</h3>
+            <canvas id="bayesChart" width="560" height="400" style="display: block; margin: 0 auto; background: white; border-radius: 8px;"></canvas>
+            <p style="color: #aaa; font-size: 12px; text-align: center; margin-top: 10px;">
+                El área verde representa P(A∩B), y el área total azul representa P(B)
+            </p>
+        </div>
+
         <div style="margin-top: 20px; padding: 15px; border-left: 4px solid #667eea;">
             <p style="color: #fff; margin: 0; font-size: 14px;"><strong>Cálculo paso a paso:</strong></p>
             <p id="pasoAPaso" style="color: #fff; margin: 10px 0 0 0; font-size: 13px; line-height: 1.6;"></p>
@@ -123,9 +133,197 @@
 
             // Mostrar el div de resultado
             document.getElementById('resultado').style.display = 'block';
-            
+
+            // Dibujar el gráfico
+            drawBayesChart(pA, pBA, pBnotA, pAgivenB, pB);
+
             // Scroll suave al resultado
             document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function drawBayesChart(pA, pBA, pBnotA, pAgivenB, pB) {
+            const canvas = document.getElementById('bayesChart');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Limpiar canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Configuración
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = height - 2 * margin - 60;
+            const barHeight = 80;
+            const spacing = 20;
+
+            // Calcular P(¬A)
+            const pNotA = 1 - pA;
+
+            // Calcular intersecciones
+            const pAandB = pBA * pA;
+            const pNotAandB = pBnotA * pNotA;
+
+            // Título
+            ctx.font = 'bold 16px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('Diagrama de Probabilidades', width / 2, 25);
+
+            // Posición Y para cada barra
+            let currentY = margin + 30;
+
+            // ===== BARRA 1: P(A) y P(¬A) =====
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.fillText('Probabilidades a priori:', margin, currentY - 5);
+
+            // P(A) - color morado
+            const widthPA = chartWidth * pA;
+            ctx.fillStyle = '#9C27B0';
+            ctx.fillRect(margin, currentY, widthPA, barHeight);
+            ctx.strokeStyle = '#7B1FA2';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin, currentY, widthPA, barHeight);
+
+            // Etiqueta P(A)
+            if (widthPA > 50) {
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 13px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('P(A)', margin + widthPA / 2, currentY + barHeight / 2 - 10);
+                ctx.font = '12px Arial';
+                ctx.fillText((pA * 100).toFixed(1) + '%', margin + widthPA / 2, currentY + barHeight / 2 + 10);
+            }
+
+            // P(¬A) - color gris
+            const widthPNotA = chartWidth * pNotA;
+            ctx.fillStyle = '#757575';
+            ctx.fillRect(margin + widthPA, currentY, widthPNotA, barHeight);
+            ctx.strokeStyle = '#616161';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin + widthPA, currentY, widthPNotA, barHeight);
+
+            // Etiqueta P(¬A)
+            if (widthPNotA > 50) {
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 13px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('P(¬A)', margin + widthPA + widthPNotA / 2, currentY + barHeight / 2 - 10);
+                ctx.font = '12px Arial';
+                ctx.fillText((pNotA * 100).toFixed(1) + '%', margin + widthPA + widthPNotA / 2, currentY + barHeight / 2 + 10);
+            }
+
+            currentY += barHeight + spacing + 20;
+
+            // ===== BARRA 2: P(B|A) y P(B|¬A) =====
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.fillText('Probabilidad de B en cada escenario:', margin, currentY - 5);
+
+            // P(B|A) dentro de P(A)
+            const widthPBA = widthPA * pBA;
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(margin, currentY, widthPBA, barHeight);
+            ctx.strokeStyle = '#388E3C';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin, currentY, widthPBA, barHeight);
+
+            // Etiqueta P(B|A)
+            if (widthPBA > 50) {
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('P(B|A)', margin + widthPBA / 2, currentY + barHeight / 2 - 8);
+                ctx.font = '11px Arial';
+                ctx.fillText((pBA * 100).toFixed(1) + '%', margin + widthPBA / 2, currentY + barHeight / 2 + 8);
+            }
+
+            // P(¬B|A) - parte no B en A
+            const widthNotBA = widthPA - widthPBA;
+            ctx.fillStyle = '#E1BEE7';
+            ctx.fillRect(margin + widthPBA, currentY, widthNotBA, barHeight);
+            ctx.strokeStyle = '#BA68C8';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(margin + widthPBA, currentY, widthNotBA, barHeight);
+
+            // P(B|¬A) dentro de P(¬A)
+            const widthPBNotA = widthPNotA * pBnotA;
+            ctx.fillStyle = '#2196F3';
+            ctx.fillRect(margin + widthPA, currentY, widthPBNotA, barHeight);
+            ctx.strokeStyle = '#1976D2';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin + widthPA, currentY, widthPBNotA, barHeight);
+
+            // Etiqueta P(B|¬A)
+            if (widthPBNotA > 50) {
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('P(B|¬A)', margin + widthPA + widthPBNotA / 2, currentY + barHeight / 2 - 8);
+                ctx.font = '11px Arial';
+                ctx.fillText((pBnotA * 100).toFixed(1) + '%', margin + widthPA + widthPBNotA / 2, currentY + barHeight / 2 + 8);
+            }
+
+            // P(¬B|¬A) - parte no B en ¬A
+            const widthNotBNotA = widthPNotA - widthPBNotA;
+            ctx.fillStyle = '#E0E0E0';
+            ctx.fillRect(margin + widthPA + widthPBNotA, currentY, widthNotBNotA, barHeight);
+            ctx.strokeStyle = '#BDBDBD';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(margin + widthPA + widthPBNotA, currentY, widthNotBNotA, barHeight);
+
+            currentY += barHeight + spacing + 25;
+
+            // ===== Resumen final =====
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.fillText('Resultado (Teorema de Bayes):', margin, currentY - 5);
+
+            // Leyenda de colores
+            const legendY = currentY + 5;
+            const legendSpacing = 180;
+
+            // P(A∩B) - verde
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(margin, legendY, 20, 20);
+            ctx.strokeStyle = '#388E3C';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(margin, legendY, 20, 20);
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P(A∩B) = ' + (pAandB * 100).toFixed(2) + '%', margin + 25, legendY + 15);
+
+            // P(¬A∩B) - azul
+            ctx.fillStyle = '#2196F3';
+            ctx.fillRect(margin + legendSpacing, legendY, 20, 20);
+            ctx.strokeStyle = '#1976D2';
+            ctx.strokeRect(margin + legendSpacing, legendY, 20, 20);
+            ctx.fillStyle = '#333';
+            ctx.fillText('P(¬A∩B) = ' + (pNotAandB * 100).toFixed(2) + '%', margin + legendSpacing + 25, legendY + 15);
+
+            // P(B) total
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('P(B) = ' + (pB * 100).toFixed(2) + '%', margin + legendSpacing * 2, legendY + 15);
+
+            // Resultado final destacado
+            const resultY = legendY + 40;
+            ctx.fillStyle = '#F0F4C3';
+            ctx.fillRect(margin, resultY, chartWidth, 35);
+            ctx.strokeStyle = '#4CAF50';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(margin, resultY, chartWidth, 35);
+
+            ctx.fillStyle = '#2E7D32';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('P(A|B) = P(A∩B) / P(B) = ' + (pAgivenB * 100).toFixed(2) + '% (' + pAgivenB.toFixed(4) + ')',
+                        width / 2, resultY + 22);
         }
 
         // Permitir calcular con Enter
