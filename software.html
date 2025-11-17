@@ -5,9 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Teorema de Bayes</title>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
-    
-    <h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Calculadora del Teorema de Bayes</h1>
+<body style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+
+    <h1 style="color: #fff; text-align: center; margin-bottom: 30px; font-size: 32px;">Calculadoras de Probabilidad</h1>
+
+    <!-- Navegación entre calculadoras -->
+    <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px;">
+        <button onclick="mostrarCalculadora('condicional')" id="btnCondicional"
+                style="padding: 12px 24px; border: 2px solid #4CAF50; background: #4CAF50; color: white; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s;">
+            Probabilidad Condicional
+        </button>
+        <button onclick="mostrarCalculadora('bayes')" id="btnBayes"
+                style="padding: 12px 24px; border: 2px solid #667eea; background: transparent; color: #667eea; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s;">
+            Teorema de Bayes
+        </button>
+    </div>
+
+    <!-- CALCULADORA DE PROBABILIDAD CONDICIONAL -->
+    <div id="calculadoraCondicional" style="display: block;">
+        <h2 style="color: #fff; text-align: center; margin-bottom: 10px;">Calculadora de Probabilidad Condicional</h2>
+        <p style="color: #fff; text-align: center; margin-bottom: 30px; font-size: 14px;">
+            Calcula P(A|B) = Probabilidad de A dado que B ocurrió
+        </p>
+
+        <div style="border: 2px solid #4CAF50; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: rgba(76, 175, 80, 0.05);">
+
+            <div style="margin-bottom: 20px;">
+                <label style="color: #fff; display: block; margin-bottom: 5px; font-weight: bold;">
+                    P(A∩B) - Probabilidad de A y B juntos:
+                </label>
+                <input type="number" id="pAintersectB" min="0" max="1" step="0.01" value="0.25"
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+                <small style="color: #888;">Valor entre 0 y 1 (ejemplo: 0.25 = 25%)</small>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="color: #fff; display: block; margin-bottom: 5px; font-weight: bold;">
+                    P(B) - Probabilidad de B:
+                </label>
+                <input type="number" id="pB_cond" min="0" max="1" step="0.01" value="0.40"
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+                <small style="color: #888;">Valor entre 0 y 1 (ejemplo: 0.40 = 40%)</small>
+            </div>
+
+            <button onclick="calcularCondicional()"
+                    style="width: 100%; padding: 12px; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);">
+                Calcular P(A|B)
+            </button>
+        </div>
+
+        <div id="resultadoCondicional" style="border: 2px solid #4CAF50; border-radius: 8px; padding: 20px; display: none; background: rgba(76, 175, 80, 0.05);">
+            <h2 style="color: #fff; margin-top: 0;">Resultado:</h2>
+            <div style="color: #fff; font-size: 18px; margin-bottom: 15px;">
+                <strong>P(A|B) = <span id="resultadoCondicionalValor" style="color: #4CAF50; font-size: 24px;"></span></strong>
+            </div>
+            <div style="color: #fff; font-size: 14px; line-height: 1.6;">
+                <p style="margin: 5px 0;"><strong>Interpretación:</strong></p>
+                <p id="interpretacionCondicional" style="margin: 5px 0;"></p>
+            </div>
+
+            <!-- Visualización -->
+            <div style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <h3 style="color: #fff; margin-top: 0; text-align: center;">Visualización de Probabilidad Condicional</h3>
+                <canvas id="conditionalChart" width="760" height="300" style="display: block; margin: 0 auto; background: white; border-radius: 8px;"></canvas>
+                <p style="color: #aaa; font-size: 12px; text-align: center; margin-top: 10px;">
+                    P(A|B) es la proporción de A∩B dentro de B
+                </p>
+            </div>
+
+            <div style="margin-top: 20px; padding: 15px; border-left: 4px solid #4CAF50;">
+                <p style="color: #fff; margin: 0; font-size: 14px;"><strong>Cálculo paso a paso:</strong></p>
+                <p id="pasoAPasoCondicional" style="color: #fff; margin: 10px 0 0 0; font-size: 13px; line-height: 1.6;"></p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 15px; border: 1px solid #4CAF50; border-radius: 8px; background: rgba(76, 175, 80, 0.05);">
+            <h3 style="color: #fff; margin-top: 0;">Fórmula de Probabilidad Condicional:</h3>
+            <p style="color: #fff; font-size: 16px; text-align: center; margin: 15px 0; font-family: 'Courier New', monospace;">
+                P(A|B) = P(A∩B) / P(B)
+            </p>
+            <p style="color: #aaa; font-size: 13px; text-align: center; margin: 5px 0;">
+                La probabilidad de A dado B es igual a la probabilidad de que ambos ocurran dividida por la probabilidad de B
+            </p>
+        </div>
+    </div>
+
+    <!-- CALCULADORA DEL TEOREMA DE BAYES -->
+    <div id="calculadoraBayes" style="display: none;">
+        <h2 style="color: #fff; text-align: center; margin-bottom: 10px;">Calculadora del Teorema de Bayes</h2>
     <p style="color: #fff; text-align: center; margin-bottom: 30px; font-size: 14px;">
         Calcula P(A|B) = Probabilidad de A dado que B ocurrió
     </p>
@@ -72,14 +157,205 @@
         </div>
     </div>
 
-    <div style="margin-top: 30px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px;">
+    <div style="margin-top: 30px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background: rgba(102, 126, 234, 0.05);">
         <h3 style="color: #fff; margin-top: 0;">Fórmula del Teorema de Bayes:</h3>
         <p style="color: #fff; font-size: 14px; text-align: center; margin: 15px 0;">
             P(A|B) = [P(B|A) × P(A)] / [P(B|A) × P(A) + P(B|¬A) × P(¬A)]
         </p>
     </div>
+    </div>
 
     <script>
+        // Función para cambiar entre calculadoras
+        function mostrarCalculadora(tipo) {
+            const condDiv = document.getElementById('calculadoraCondicional');
+            const bayesDiv = document.getElementById('calculadoraBayes');
+            const btnCond = document.getElementById('btnCondicional');
+            const btnBayes = document.getElementById('btnBayes');
+
+            if (tipo === 'condicional') {
+                condDiv.style.display = 'block';
+                bayesDiv.style.display = 'none';
+                btnCond.style.background = '#4CAF50';
+                btnCond.style.color = 'white';
+                btnBayes.style.background = 'transparent';
+                btnBayes.style.color = '#667eea';
+            } else {
+                condDiv.style.display = 'none';
+                bayesDiv.style.display = 'block';
+                btnCond.style.background = 'transparent';
+                btnCond.style.color = '#4CAF50';
+                btnBayes.style.background = '#667eea';
+                btnBayes.style.color = 'white';
+            }
+        }
+
+        // Calculadora de Probabilidad Condicional
+        function calcularCondicional() {
+            const pAintersectB = parseFloat(document.getElementById('pAintersectB').value);
+            const pB = parseFloat(document.getElementById('pB_cond').value);
+
+            // Validar entrada
+            if (isNaN(pAintersectB) || isNaN(pB)) {
+                alert('Por favor ingresa valores numéricos válidos');
+                return;
+            }
+
+            if (pAintersectB < 0 || pAintersectB > 1 || pB < 0 || pB > 1) {
+                alert('Todos los valores deben estar entre 0 y 1');
+                return;
+            }
+
+            if (pB === 0) {
+                alert('P(B) no puede ser cero');
+                return;
+            }
+
+            if (pAintersectB > pB) {
+                alert('P(A∩B) no puede ser mayor que P(B)');
+                return;
+            }
+
+            // Calcular P(A|B)
+            const pAgivenB = pAintersectB / pB;
+
+            // Mostrar resultado
+            document.getElementById('resultadoCondicionalValor').textContent =
+                (pAgivenB * 100).toFixed(2) + '% (' + pAgivenB.toFixed(4) + ')';
+
+            // Interpretación
+            let interpretacion = '';
+            if (pAgivenB > 0.7) {
+                interpretacion = 'Alta probabilidad de que A ocurra dado que B ha ocurrido. Esto indica una fuerte asociación entre A y B.';
+            } else if (pAgivenB > 0.3) {
+                interpretacion = 'Probabilidad moderada de que A ocurra dado que B ha ocurrido. Existe una asociación moderada entre A y B.';
+            } else {
+                interpretacion = 'Baja probabilidad de que A ocurra dado que B ha ocurrido. A y B tienen una asociación débil.';
+            }
+            document.getElementById('interpretacionCondicional').textContent = interpretacion;
+
+            // Paso a paso
+            const pasoAPaso = `
+                <strong>Fórmula:</strong> P(A|B) = P(A∩B) / P(B)<br><br>
+                <strong>Sustitución:</strong><br>
+                P(A|B) = ${pAintersectB} / ${pB}<br>
+                P(A|B) = ${pAgivenB.toFixed(4)}<br>
+                P(A|B) = ${(pAgivenB * 100).toFixed(2)}%<br><br>
+                <strong>Significado:</strong> De todas las veces que B ocurre, en ${(pAgivenB * 100).toFixed(2)}% de los casos también ocurre A.
+            `;
+            document.getElementById('pasoAPasoCondicional').innerHTML = pasoAPaso;
+
+            // Mostrar resultado
+            document.getElementById('resultadoCondicional').style.display = 'block';
+
+            // Dibujar gráfico
+            drawConditionalChart(pAintersectB, pB, pAgivenB);
+
+            // Scroll
+            document.getElementById('resultadoCondicional').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function drawConditionalChart(pAintersectB, pB, pAgivenB) {
+            const canvas = document.getElementById('conditionalChart');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Limpiar
+            ctx.clearRect(0, 0, width, height);
+
+            const margin = 40;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = 150;
+            const startY = 80;
+
+            // Título
+            ctx.font = 'bold 18px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('Diagrama de Probabilidad Condicional', width / 2, 30);
+
+            // Dibujar P(B) - la barra completa
+            const widthB = chartWidth * pB;
+            ctx.fillStyle = '#2196F3';
+            ctx.fillRect(margin, startY, widthB, chartHeight);
+            ctx.strokeStyle = '#1976D2';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(margin, startY, widthB, chartHeight);
+
+            // Etiqueta P(B)
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('P(B)', margin + widthB / 2, startY - 10);
+            ctx.font = '14px Arial';
+            ctx.fillText((pB * 100).toFixed(1) + '%', margin + widthB / 2, startY + chartHeight + 20);
+
+            // Dibujar P(A∩B) - dentro de P(B)
+            const widthAB = chartWidth * pAintersectB;
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(margin, startY, widthAB, chartHeight);
+            ctx.strokeStyle = '#388E3C';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(margin, startY, widthAB, chartHeight);
+
+            // Etiqueta P(A∩B)
+            if (widthAB > 80) {
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('P(A∩B)', margin + widthAB / 2, startY + chartHeight / 2 - 10);
+                ctx.font = '14px Arial';
+                ctx.fillText((pAintersectB * 100).toFixed(1) + '%', margin + widthAB / 2, startY + chartHeight / 2 + 10);
+            } else if (widthAB > 0) {
+                ctx.fillStyle = '#2E7D32';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText('P(A∩B): ' + (pAintersectB * 100).toFixed(1) + '%', margin + widthAB + 5, startY + 20);
+            }
+
+            // Dibujar P(B - A) - la parte de B que no es A
+            const widthBnotA = widthB - widthAB;
+            if (widthBnotA > 5) {
+                ctx.fillStyle = 'rgba(33, 150, 243, 0.3)';
+                ctx.fillRect(margin + widthAB, startY, widthBnotA, chartHeight);
+                ctx.strokeStyle = '#1976D2';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(margin + widthAB, startY, widthBnotA, chartHeight);
+
+                if (widthBnotA > 60) {
+                    ctx.fillStyle = '#1976D2';
+                    ctx.font = 'bold 14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('B sin A', margin + widthAB + widthBnotA / 2, startY + chartHeight / 2);
+                }
+            }
+
+            // Flecha y explicación
+            const arrowY = startY + chartHeight + 60;
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('P(A|B) es la proporción de A∩B dentro de B:', width / 2, arrowY);
+
+            // Resultado final
+            ctx.fillStyle = '#E8F5E9';
+            ctx.fillRect(margin, arrowY + 20, chartWidth, 50);
+            ctx.strokeStyle = '#4CAF50';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(margin, arrowY + 20, chartWidth, 50);
+
+            ctx.fillStyle = '#2E7D32';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(
+                'P(A|B) = ' + (pAintersectB * 100).toFixed(2) + '% / ' + (pB * 100).toFixed(2) + '% = ' + (pAgivenB * 100).toFixed(2) + '%',
+                width / 2,
+                arrowY + 48
+            );
+        }
+
+        // Calculadora de Teorema de Bayes (función original)
         function calcular() {
             // Obtener valores
             const pA = parseFloat(document.getElementById('pA').value);
