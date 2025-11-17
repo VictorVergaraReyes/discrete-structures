@@ -6,18 +6,31 @@
     <title>Ejemplos de Probabilidad - Discreta y Condicional</title>
 </head>
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; color: #e8e8e8; line-height: 1.7;">
-    
+
     <h1 style="text-align: center; color: #fff; border-bottom: 3px solid #5dade2; padding-bottom: 15px; margin-bottom: 40px;">Ejemplos Resueltos de Probabilidad</h1>
-    
-    <!-- SECCIÓN: PROBABILIDAD DISCRETA -->
-    <h2 style="color: #85c1e9; text-align: center; margin: 40px 0 30px 0; font-size: 32px;">PROBABILIDAD DISCRETA</h2>
+
+    <!-- NAVIGATION -->
+    <div id="navigation" style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0; padding: 20px; background: rgba(93, 173, 226, 0.1); border-radius: 10px; border: 2px solid #5dade2;">
+        <button id="prevBtn" onclick="changeStep(-1)" style="background: #3498db; color: white; border: none; padding: 12px 25px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+            ← Anterior
+        </button>
+        <div id="stepIndicator" style="color: #fff; font-size: 18px; font-weight: bold;">
+            Ejemplo <span id="currentStep">1</span> de <span id="totalSteps">9</span>
+        </div>
+        <button id="nextBtn" onclick="changeStep(1)" style="background: #3498db; color: white; border: none; padding: 12px 25px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+            Siguiente →
+        </button>
+    </div>
+
+    <!-- SECTION TITLE (dynamic) -->
+    <h2 id="sectionTitle" style="color: #85c1e9; text-align: center; margin: 40px 0 30px 0; font-size: 32px;">PROBABILIDAD DISCRETA</h2>
 
     <!-- EJEMPLO BERNOULLI -->
-    <div style="border: 2px solid #e67e22; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="discrete" data-solution-steps="5" style="border: 2px solid #e67e22; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
         <h3 style="color: #f39c12; margin-top: 0; font-size: 24px;">
             1. Distribución de Bernoulli
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #e67e22; margin-bottom: 20px;">
             <h4 style="color: #f8c471; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -25,43 +38,78 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">5</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>p (probabilidad de éxito/defectuosa) = 0.05</li>
-                <li>X = 1 (defectuosa), X = 0 (no defectuosa)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
-                P(X=x) = p^x(1-p)^(1-x)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Para X = 1 (defectuosa):</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=1) = (0.05)^1 × (0.95)^0 = 0.05
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>p (probabilidad de éxito/defectuosa) = 0.05</li>
+                    <li>X = 1 (defectuosa), X = 0 (no defectuosa)</li>
+                </ul>
+            </div>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Para X = 0 (no defectuosa):</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=0) = (0.05)^0 × (0.95)^1 = 0.95
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(defectuosa) = 5% | P(no defectuosa) = 95%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula de Bernoulli</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
+                    P(X=x) = p^x(1-p)^(1-x)
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Donde x puede ser 0 o 1 (éxito o fracaso)
+                </p>
+            </div>
+
+            <!-- Step 3: Calcular X=1 -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular P(X=1) - defectuosa</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos x=1 en la fórmula:</p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=1) = (0.05)^1 × (0.95)^0 = 0.05
+                </p>
+            </div>
+
+            <!-- Step 4: Calcular X=0 -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Calcular P(X=0) - no defectuosa</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos x=0 en la fórmula:</p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=0) = (0.05)^0 × (0.95)^1 = 0.95
+                </p>
+            </div>
+
+            <!-- Step 5: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 5: Respuesta final</strong></p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(defectuosa) = 5% | P(no defectuosa) = 95%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO BINOMIAL -->
-    <div style="border: 2px solid #3498db; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="discrete" data-solution-steps="4" style="border: 2px solid #3498db; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #5dade2; margin-top: 0; font-size: 24px;">
             2. Distribución Binomial
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #3498db; margin-bottom: 20px;">
             <h4 style="color: #85c1e9; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -69,47 +117,76 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">4</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>n = 5 (número de lanzamientos)</li>
-                <li>x = 3 (águilas que queremos)</li>
-                <li>p = 0.5 (probabilidad de águila)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
-                P(X=3) = C(5,3) × (0.5)^3 × (0.5)^2
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 1: Calcular combinaciones</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                C(5,3) = 5!/(3!×2!) = 10
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>n = 5 (número de lanzamientos)</li>
+                    <li>x = 3 (águilas que queremos)</li>
+                    <li>p = 0.5 (probabilidad de águila)</li>
+                </ul>
+            </div>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 2: Calcular probabilidad</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=3) = 10 × (0.5)^3 × (0.5)^2
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=3) = 10 × 0.125 × 0.25 = 0.3125
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(3 águilas) = 31.25%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula binomial</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
+                    P(X=3) = C(5,3) × (0.5)^3 × (0.5)^2
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Primero calculamos las combinaciones C(5,3)
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    C(5,3) = 5!/(3!×2!) = 10
+                </p>
+            </div>
+
+            <!-- Step 3: Calcular probabilidad -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular la probabilidad</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos los valores en la fórmula:</p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=3) = 10 × (0.5)^3 × (0.5)^2
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=3) = 10 × 0.125 × 0.25 = 0.3125
+                </p>
+            </div>
+
+            <!-- Step 4: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Respuesta final</strong></p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(3 águilas) = 31.25%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO HIPERGEOMÉTRICA -->
-    <div style="border: 2px solid #9b59b6; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="discrete" data-solution-steps="4" style="border: 2px solid #9b59b6; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #bb8fce; margin-top: 0; font-size: 24px;">
             3. Distribución Hipergeométrica
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #9b59b6; margin-bottom: 20px;">
             <h4 style="color: #d7bde2; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -117,54 +194,82 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">4</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>N = 30 (total de canicas)</li>
-                <li>K = 12 (canicas rojas en la población)</li>
-                <li>n = 5 (canicas que sacamos)</li>
-                <li>x = 2 (canicas rojas que queremos)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 15px;">
-                P(X=2) = [C(12,2) × C(18,3)] / C(30,5)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 1: Calcular combinaciones</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                C(12,2) = 12!/(2!×10!) = 66
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                C(18,3) = 18!/(3!×15!) = 816
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                C(30,5) = 30!/(5!×25!) = 142,506
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>N = 30 (total de canicas)</li>
+                    <li>K = 12 (canicas rojas en la población)</li>
+                    <li>n = 5 (canicas que sacamos)</li>
+                    <li>x = 2 (canicas rojas que queremos)</li>
+                </ul>
+            </div>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 2: Calcular probabilidad</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=2) = (66 × 816) / 142,506
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=2) = 53,856 / 142,506 ≈ 0.3779
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(2 rojas) ≈ 37.79%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula hipergeométrica</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 15px;">
+                    P(X=2) = [C(12,2) × C(18,3)] / C(30,5)
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Primero calculamos las combinaciones necesarias
+                </p>
+            </div>
+
+            <!-- Step 3: Calcular combinaciones -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular las combinaciones</strong></p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    C(12,2) = 12!/(2!×10!) = 66
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    C(18,3) = 18!/(3!×15!) = 816
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    C(30,5) = 30!/(5!×25!) = 142,506
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(X=2) = (66 × 816) / 142,506
+                </p>
+            </div>
+
+            <!-- Step 4: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Respuesta final</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(X=2) = 53,856 / 142,506 ≈ 0.3779
+                </p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(2 rojas) ≈ 37.79%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO GEOMÉTRICA -->
-    <div style="border: 2px solid #1abc9c; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="discrete" data-solution-steps="5" style="border: 2px solid #1abc9c; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #48c9b0; margin-top: 0; font-size: 24px;">
             4. Distribución Geométrica
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #1abc9c; margin-bottom: 20px;">
             <h4 style="color: #76d7c4; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -172,47 +277,84 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">5</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>x = 4 (intento donde sale el primer 6)</li>
-                <li>p = 1/6 ≈ 0.1667 (probabilidad de sacar 6)</li>
-                <li>q = 5/6 ≈ 0.8333 (probabilidad de NO sacar 6)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
-                P(X=4) = (1-p)^(x-1) × p
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Interpretación:</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                Los primeros 3 intentos NO sale el 6, y en el 4° sí sale
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>x = 4 (intento donde sale el primer 6)</li>
+                    <li>p = 1/6 ≈ 0.1667 (probabilidad de sacar 6)</li>
+                    <li>q = 5/6 ≈ 0.8333 (probabilidad de NO sacar 6)</li>
+                </ul>
+            </div>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Cálculo:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=4) = (5/6)^3 × (1/6)
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=4) = 0.5787 × 0.1667 ≈ 0.0965
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(primer 6 en 4° intento) ≈ 9.65%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula geométrica</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
+                    P(X=4) = (1-p)^(x-1) × p
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Donde x es el número de intentos hasta el primer éxito
+                </p>
+            </div>
+
+            <!-- Step 3: Interpretación -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Interpretar el problema</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    Los primeros 3 intentos NO sale el 6, y en el 4° sí sale
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=4) = (5/6)^3 × (1/6)
+                </p>
+            </div>
+
+            <!-- Step 4: Cálculo -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Calcular la probabilidad</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos los valores en la fórmula:</p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=4) = (0.8333)^3 × 0.1667
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(X=4) = 0.5787 × 0.1667 ≈ 0.0965
+                </p>
+            </div>
+
+            <!-- Step 5: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 5: Respuesta final</strong></p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(primer 6 en 4° intento) ≈ 9.65%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO POISSON -->
-    <div style="border: 2px solid #e74c3c; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="discrete" data-solution-steps="4" style="border: 2px solid #e74c3c; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #ec7063; margin-top: 0; font-size: 24px;">
             5. Distribución de Poisson
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #e74c3c; margin-bottom: 20px;">
             <h4 style="color: #f1948a; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -220,56 +362,81 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">4</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>λ = 8 (promedio de llamadas por hora)</li>
-                <li>x = 5 (llamadas que queremos calcular)</li>
-                <li>e ≈ 2.71828</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
-                P(X=5) = (e^(-8) × 8^5) / 5!
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 1: Calcular componentes</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                e^(-8) ≈ 0.0003355
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                8^5 = 32,768
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                5! = 120
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>λ = 8 (promedio de llamadas por hora)</li>
+                    <li>x = 5 (llamadas que queremos calcular)</li>
+                    <li>e ≈ 2.71828</li>
+                </ul>
+            </div>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 2: Calcular probabilidad</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=5) = (0.0003355 × 32,768) / 120
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(X=5) = 10.997 / 120 ≈ 0.0916
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(5 llamadas) ≈ 9.16%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula de Poisson</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
+                    P(X=5) = (e^(-8) × 8^5) / 5!
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Primero calculamos cada componente de la fórmula
+                </p>
+            </div>
+
+            <!-- Step 3: Calcular componentes -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular componentes</strong></p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    e^(-8) ≈ 0.0003355
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    8^5 = 32,768
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    5! = 120
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(X=5) = (0.0003355 × 32,768) / 120
+                </p>
+            </div>
+
+            <!-- Step 4: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Respuesta final</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(X=5) = 10.997 / 120 ≈ 0.0916
+                </p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(5 llamadas) ≈ 9.16%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- SECCIÓN: PROBABILIDAD CONDICIONAL -->
-    <h2 style="color: #f8c471; text-align: center; margin: 60px 0 30px 0; font-size: 32px;">PROBABILIDAD CONDICIONAL</h2>
-
     <!-- EJEMPLO PROBABILIDAD CONDICIONAL BÁSICA -->
-    <div style="border: 2px solid #5dade2; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="conditional" data-solution-steps="4" style="border: 2px solid #5dade2; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #85c1e9; margin-top: 0; font-size: 24px;">
             Probabilidad Condicional Básica
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #5dade2; margin-bottom: 20px;">
             <h4 style="color: #aed6f1; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -277,43 +444,74 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">4</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>P(M) = 0.60</li>
-                <li>P(F) = 0.40</li>
-                <li>P(M∩F) = 0.25 (estudian ambas)</li>
-                <li>Buscamos: P(M|F)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando la fórmula:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
-                P(M|F) = P(M∩F) / P(F)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Cálculo:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(M|F) = 0.25 / 0.40 = 0.625
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>P(M) = 0.60</li>
+                    <li>P(F) = 0.40</li>
+                    <li>P(M∩F) = 0.25 (estudian ambas)</li>
+                    <li>Buscamos: P(M|F)</li>
+                </ul>
+            </div>
 
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(M|F) = 62.5%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar la fórmula de probabilidad condicional</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
+                    P(M|F) = P(M∩F) / P(F)
                 </p>
-                <p style="color: #d5d8dc; margin: 10px 0 0 0; font-size: 14px; text-align: center;">
-                    Si estudia física, hay 62.5% de probabilidad de que también estudie matemáticas
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Esta fórmula calcula la probabilidad de M dado que F ocurrió
                 </p>
+            </div>
+
+            <!-- Step 3: Cálculo -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular la probabilidad</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos los valores en la fórmula:</p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(M|F) = 0.25 / 0.40 = 0.625
+                </p>
+            </div>
+
+            <!-- Step 4: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Respuesta final</strong></p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(M|F) = 62.5%
+                    </p>
+                    <p style="color: #d5d8dc; margin: 10px 0 0 0; font-size: 14px; text-align: center;">
+                        Si estudia física, hay 62.5% de probabilidad de que también estudie matemáticas
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO TEOREMA DE MULTIPLICACIÓN -->
-    <div style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="conditional" data-solution-steps="5" style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #76d7c4; margin-top: 0; font-size: 24px;">
             <span style="margin-right: 10px;">×</span> Teorema de la Multiplicación
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0; margin-bottom: 20px;">
             <h4 style="color: #abebc6; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -321,56 +519,87 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">5</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Planteamiento:</strong></p>
-            <p style="color: #d5d8dc; margin: 10px 0;">
-                Sea R₁ = primera bola es roja, R₂ = segunda bola es roja
-            </p>
-            <p style="color: #d5d8dc; margin: 10px 0;">
-                Buscamos: P(R₁∩R₂)
-            </p>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando el teorema:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
-                P(R₁∩R₂) = P(R₁) × P(R₂|R₁)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 1: Probabilidad de la primera roja</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                Hay 5 rojas de 8 bolas totales
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(R₁) = 5/8
-            </p>
-
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 2: Probabilidad condicional de segunda roja</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                Si ya sacamos una roja, quedan 4 rojas de 7 bolas totales
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(R₂|R₁) = 4/7
-            </p>
-
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Paso 3: Calcular probabilidad conjunta</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(R₁∩R₂) = (5/8) × (4/7) = 20/56 = 5/14 ≈ 0.357
-            </p>
-
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(ambas rojas) = 5/14 ≈ 35.7%
+            <!-- Step 1: Planteamiento -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Plantear el problema</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    Sea R₁ = primera bola es roja, R₂ = segunda bola es roja
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    Buscamos: P(R₁∩R₂)
+                </p>
+            </div>
+
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar el teorema de la multiplicación</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
+                    P(R₁∩R₂) = P(R₁) × P(R₂|R₁)
+                </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Necesitamos calcular ambas probabilidades por separado
+                </p>
+            </div>
+
+            <!-- Step 3: Primera probabilidad -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular P(R₁) - primera bola roja</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    Hay 5 rojas de 8 bolas totales
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(R₁) = 5/8
+                </p>
+            </div>
+
+            <!-- Step 4: Segunda probabilidad condicional -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Calcular P(R₂|R₁) - segunda bola roja dado que la primera fue roja</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    Si ya sacamos una roja, quedan 4 rojas de 7 bolas totales
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(R₂|R₁) = 4/7
+                </p>
+            </div>
+
+            <!-- Step 5: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 5: Calcular probabilidad conjunta</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(R₁∩R₂) = (5/8) × (4/7) = 20/56 = 5/14 ≈ 0.357
+                </p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(ambas rojas) = 5/14 ≈ 35.7%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO TEOREMA DE PROBABILIDAD TOTAL -->
-    <div style="border: 2px solid #85c1e9; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="conditional" data-solution-steps="4" style="border: 2px solid #85c1e9; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #aed6f1; margin-top: 0; font-size: 24px;">
             <span style="margin-right: 10px;">∑</span> Teorema de Probabilidad Total
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #85c1e9; margin-bottom: 20px;">
             <h4 style="color: #d4e6f1; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -378,45 +607,76 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">4</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>P(A) = 0.50, P(B) = 0.30, P(C) = 0.20</li>
-                <li>P(D|A) = 0.02, P(D|B) = 0.03, P(D|C) = 0.05</li>
-                <li>D = producto defectuoso</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando el teorema:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
-                P(D) = P(D|A)×P(A) + P(D|B)×P(B) + P(D|C)×P(C)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Sustituyendo valores:</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                P(D) = (0.02 × 0.50) + (0.03 × 0.30) + (0.05 × 0.20)
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                P(D) = 0.01 + 0.009 + 0.01
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(D) = 0.029
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>P(A) = 0.50, P(B) = 0.30, P(C) = 0.20</li>
+                    <li>P(D|A) = 0.02, P(D|B) = 0.03, P(D|C) = 0.05</li>
+                    <li>D = producto defectuoso</li>
+                </ul>
+            </div>
 
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(defectuoso) = 2.9%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar el teorema de probabilidad total</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 16px;">
+                    P(D) = P(D|A)×P(A) + P(D|B)×P(B) + P(D|C)×P(C)
                 </p>
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Sumamos la probabilidad ponderada de cada máquina
+                </p>
+            </div>
+
+            <!-- Step 3: Cálculo -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Sustituir valores y calcular</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Sustituimos en la fórmula:</p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    P(D) = (0.02 × 0.50) + (0.03 × 0.30) + (0.05 × 0.20)
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    P(D) = 0.01 + 0.009 + 0.01
+                </p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
+                    P(D) = 0.029
+                </p>
+            </div>
+
+            <!-- Step 4: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Respuesta final</strong></p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(defectuoso) = 2.9%
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- EJEMPLO TEOREMA DE BAYES -->
-    <div style="border: 2px solid #f7dc6f; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+    <div class="example-step" data-section="conditional" data-solution-steps="5" style="border: 2px solid #f7dc6f; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #f9e79f; margin-top: 0; font-size: 24px;">
             Teorema de Bayes
         </h3>
-        
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #f7dc6f; margin-bottom: 20px;">
             <h4 style="color: #fdebd0; margin-top: 0;">Problema:</h4>
             <p style="color: #d5d8dc; margin: 10px 0;">
@@ -424,49 +684,268 @@
             </p>
         </div>
 
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">5</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
             <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
-            <p style="color: #abebc6; margin: 5px 0;"><strong>Datos conocidos:</strong></p>
-            <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
-                <li>P(C) = 0.20</li>
-                <li>P(D|C) = 0.05</li>
-                <li>P(D) = 0.029 (del ejemplo anterior)</li>
-                <li>Buscamos: P(C|D)</li>
-            </ul>
-            
-            <p style="color: #abebc6; margin: 15px 0 5px 0;"><strong>Aplicando Teorema de Bayes:</strong></p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
-                P(C|D) = [P(D|C) × P(C)] / P(D)
-            </p>
 
-            <p style="color: #f8c471; margin: 15px 0 5px 0;"><strong>Sustituyendo valores:</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                P(C|D) = (0.05 × 0.20) / 0.029
-            </p>
-            <p style="color: #d5d8dc; margin: 5px 0;">
-                P(C|D) = 0.01 / 0.029
-            </p>
-            <p style="color: #fff; font-family: 'Courier New', monospace; margin: 5px 0;">
-                P(C|D) ≈ 0.3448
-            </p>
+            <!-- Step 1: Datos -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Identificar los datos conocidos</strong></p>
+                <ul style="color: #d5d8dc; margin: 10px 0; padding-left: 25px;">
+                    <li>P(C) = 0.20</li>
+                    <li>P(D|C) = 0.05</li>
+                    <li>P(D) = 0.029 (del ejemplo anterior)</li>
+                    <li>Buscamos: P(C|D)</li>
+                </ul>
+            </div>
 
-            <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
-                <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
-                    <strong>Respuesta:</strong> P(C|D) ≈ 34.48%
+            <!-- Step 2: Fórmula -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2: Aplicar el Teorema de Bayes</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
+                    P(C|D) = [P(D|C) × P(C)] / P(D)
                 </p>
-                <p style="color: #d5d8dc; margin: 10px 0 0 0; font-size: 14px; text-align: center;">
-                    Hay 34.48% de probabilidad de que el producto defectuoso venga de la máquina C
+                <p style="color: #d5d8dc; margin: 10px 0; font-size: 14px;">
+                    Esta fórmula invierte la probabilidad condicional
                 </p>
             </div>
-        </div>
 
-        <div style="padding: 15px; border-radius: 8px; border: 1px solid #f7dc6f; margin-top: 20px;">
-            <p style="color: #fdebd0; margin: 5px 0;"><strong>Interpretación:</strong></p>
-            <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
-                Aunque C solo produce 20% de los productos, es responsable de 34.48% de los defectos debido a su mayor tasa de defectos (5%). Bayes nos permite "actualizar" nuestra creencia inicial con la evidencia (el producto es defectuoso).
-            </p>
+            <!-- Step 3: Sustituir numerador -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3: Calcular el numerador</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">Calculamos P(D|C) × P(C):</p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    P(C|D) = (0.05 × 0.20) / 0.029
+                </p>
+                <p style="color: #d5d8dc; margin: 5px 0;">
+                    P(C|D) = 0.01 / 0.029
+                </p>
+            </div>
+
+            <!-- Step 4: Resultado -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4: Calcular el resultado</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    P(C|D) = 0.01 / 0.029 ≈ 0.3448
+                </p>
+                <div style="padding: 15px; border-radius: 6px; border: 2px solid #76d7c4; margin-top: 20px;">
+                    <p style="color: #fff; margin: 0; font-size: 18px; text-align: center;">
+                        <strong>Respuesta:</strong> P(C|D) ≈ 34.48%
+                    </p>
+                    <p style="color: #d5d8dc; margin: 10px 0 0 0; font-size: 14px; text-align: center;">
+                        Hay 34.48% de probabilidad de que el producto defectuoso venga de la máquina C
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 5: Interpretación -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 5: Interpretación del resultado</strong></p>
+                <div style="padding: 15px; border-radius: 8px; border: 1px solid #f7dc6f; margin-top: 10px;">
+                    <p style="color: #fdebd0; margin: 5px 0;"><strong>Interpretación:</strong></p>
+                    <p style="color: #d5d8dc; margin: 5px 0; font-size: 14px;">
+                        Aunque C solo produce 20% de los productos, es responsable de 34.48% de los defectos debido a su mayor tasa de defectos (5%). Bayes nos permite "actualizar" nuestra creencia inicial con la evidencia (el producto es defectuoso).
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 9;
+        const examples = document.querySelectorAll('.example-step');
+        let currentSolutionSteps = {};  // Track solution step for each example
+
+        // Initialize solution steps for all examples
+        examples.forEach((example, index) => {
+            currentSolutionSteps[index + 1] = 1;
+        });
+
+        function initializeSolutionNav(exampleElement, exampleIndex) {
+            const solutionSteps = exampleElement.querySelectorAll('.solution-step');
+            const totalSolSteps = parseInt(exampleElement.getAttribute('data-solution-steps') || solutionSteps.length);
+
+            if (solutionSteps.length === 0) return;  // No solution steps for this example
+
+            const solNav = exampleElement.querySelector('.solution-nav');
+            if (!solNav) return;
+
+            const solPrevBtn = solNav.querySelector('.sol-prev-btn');
+            const solNextBtn = solNav.querySelector('.sol-next-btn');
+            const currentSolStepSpan = solNav.querySelector('.current-sol-step');
+            const totalSolStepsSpan = solNav.querySelector('.total-sol-steps');
+
+            // Update total steps display
+            totalSolStepsSpan.textContent = totalSolSteps;
+
+            function showSolutionStep(solStep) {
+                // Hide all solution steps
+                solutionSteps.forEach(step => {
+                    step.style.display = 'none';
+                });
+
+                // Show current solution step
+                if (solutionSteps[solStep - 1]) {
+                    solutionSteps[solStep - 1].style.display = 'block';
+                }
+
+                // Update indicator
+                currentSolStepSpan.textContent = solStep;
+
+                // Update button states
+                if (solStep === 1) {
+                    solPrevBtn.style.opacity = '0.5';
+                    solPrevBtn.style.cursor = 'not-allowed';
+                    solPrevBtn.disabled = true;
+                } else {
+                    solPrevBtn.style.opacity = '1';
+                    solPrevBtn.style.cursor = 'pointer';
+                    solPrevBtn.disabled = false;
+                }
+
+                if (solStep === totalSolSteps) {
+                    solNextBtn.style.opacity = '0.5';
+                    solNextBtn.style.cursor = 'not-allowed';
+                    solNextBtn.disabled = true;
+                } else {
+                    solNextBtn.style.opacity = '1';
+                    solNextBtn.style.cursor = 'pointer';
+                    solNextBtn.disabled = false;
+                }
+            }
+
+            // Add click handlers
+            solPrevBtn.onclick = function() {
+                if (currentSolutionSteps[exampleIndex] > 1) {
+                    currentSolutionSteps[exampleIndex]--;
+                    showSolutionStep(currentSolutionSteps[exampleIndex]);
+                }
+            };
+
+            solNextBtn.onclick = function() {
+                if (currentSolutionSteps[exampleIndex] < totalSolSteps) {
+                    currentSolutionSteps[exampleIndex]++;
+                    showSolutionStep(currentSolutionSteps[exampleIndex]);
+                }
+            };
+
+            // Add hover effects
+            [solPrevBtn, solNextBtn].forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    if (!this.disabled) {
+                        this.style.background = '#39b59c';
+                    }
+                });
+                btn.addEventListener('mouseleave', function() {
+                    if (!this.disabled) {
+                        this.style.background = '#48c9b0';
+                    }
+                });
+            });
+
+            // Show current solution step (reset to 1 when example is shown)
+            showSolutionStep(currentSolutionSteps[exampleIndex]);
+        }
+
+        function showStep(step) {
+            // Hide all examples
+            examples.forEach(example => {
+                example.style.display = 'none';
+            });
+
+            // Show current example
+            examples[step - 1].style.display = 'block';
+
+            // Reset solution step to 1 for this example
+            currentSolutionSteps[step] = 1;
+
+            // Initialize solution navigation for current example
+            initializeSolutionNav(examples[step - 1], step);
+
+            // Update step indicator
+            document.getElementById('currentStep').textContent = step;
+
+            // Update section title based on data-section attribute
+            const currentExample = examples[step - 1];
+            const section = currentExample.getAttribute('data-section');
+            const sectionTitle = document.getElementById('sectionTitle');
+
+            if (section === 'discrete') {
+                sectionTitle.textContent = 'PROBABILIDAD DISCRETA';
+                sectionTitle.style.color = '#85c1e9';
+            } else if (section === 'conditional') {
+                sectionTitle.textContent = 'PROBABILIDAD CONDICIONAL';
+                sectionTitle.style.color = '#f8c471';
+            }
+
+            // Update button states
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (step === 1) {
+                prevBtn.style.opacity = '0.5';
+                prevBtn.style.cursor = 'not-allowed';
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.cursor = 'pointer';
+                prevBtn.disabled = false;
+            }
+
+            if (step === totalSteps) {
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.disabled = false;
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changeStep(direction) {
+            const newStep = currentStep + direction;
+
+            if (newStep >= 1 && newStep <= totalSteps) {
+                currentStep = newStep;
+                showStep(currentStep);
+            }
+        }
+
+        // Add hover effects to main navigation buttons
+        const buttons = document.querySelectorAll('#prevBtn, #nextBtn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                if (!this.disabled) {
+                    this.style.background = '#2980b9';
+                }
+            });
+            btn.addEventListener('mouseleave', function() {
+                if (!this.disabled) {
+                    this.style.background = '#3498db';
+                }
+            });
+        });
+
+        // Initialize - show first step
+        showStep(1);
+    </script>
 
 </body>
 </html>
