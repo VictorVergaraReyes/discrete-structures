@@ -15,7 +15,7 @@
             ← Anterior
         </button>
         <div id="stepIndicator" style="color: #fff; font-size: 18px; font-weight: bold;">
-            Ejemplo <span id="currentStep">1</span> de <span id="totalSteps">9</span>
+            Ejemplo <span id="currentStep">1</span> de <span id="totalSteps">10</span>
         </div>
         <button id="nextBtn" onclick="changeStep(1)" style="background: #3498db; color: white; border: none; padding: 12px 25px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
             Siguiente →
@@ -434,7 +434,7 @@
     <!-- EJEMPLO PROBABILIDAD CONDICIONAL BÁSICA -->
     <div class="example-step" data-section="conditional" data-solution-steps="4" style="border: 2px solid #5dade2; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #85c1e9; margin-top: 0; font-size: 24px;">
-            Probabilidad Condicional Básica
+            6. Probabilidad Condicional Básica
         </h3>
 
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #5dade2; margin-bottom: 20px;">
@@ -506,10 +506,81 @@
         </div>
     </div>
 
+    <!-- EJEMPLO DE CONJUNTOS -->
+    <div class="example-step" data-section="conditional" data-solution-steps="5" style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
+        <h3 style="color: #76d7c4; margin-top: 0; font-size: 24px;">
+            7. Conjuntos
+        </h3>
+
+        <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0; margin-bottom: 20px;">
+            <h4 style="color: #abebc6; margin-top: 0;">Problema:</h4>
+            <p style="color: #d5d8dc; margin: 10px 0;">
+                Sea el evento A un evento cualquiera de S y A’ el complemento de A, entonces:
+            </p>
+        </div>
+
+        <!-- Solution Navigation -->
+        <div class="solution-nav" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; padding: 15px; background: rgba(72, 201, 176, 0.1); border-radius: 8px; border: 1px solid #48c9b0;">
+            <button class="sol-prev-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                ← Paso Anterior
+            </button>
+            <div class="sol-step-indicator" style="color: #fff; font-size: 16px; font-weight: bold;">
+                Paso <span class="current-sol-step">1</span> de <span class="total-sol-steps">5</span>
+            </div>
+            <button class="sol-next-btn" style="background: #48c9b0; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Siguiente Paso →
+            </button>
+        </div>
+
+        <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0;">
+            <h4 style="color: #76d7c4; margin-top: 0;">Solución:</h4>
+
+            <!-- Step 1: Planteamiento -->
+            <div class="solution-step">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 1: Plantear el problema</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    P(S)=1
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 2</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0; font-size: 18px;">
+                    (A ∪ A') = S
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 3</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    P(A ∪ A') = P(S)
+                </p>
+            </div>
+
+            <!-- Step 4-->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 4</strong></p>
+                <p style="color: #d5d8dc; margin: 10px 0;">
+                    P(A)+P(A')=1
+                </p>
+            </div>
+
+            <!-- Step 5: Respuesta final -->
+            <div class="solution-step" style="display: none;">
+                <p style="color: #abebc6; margin: 5px 0;"><strong>Paso 5: Respuesta final</strong></p>
+                <p style="color: #fff; font-family: 'Courier New', monospace; margin: 10px 0;">
+                    Por lo tanto... P(A')=1-P(A)
+                </p>                
+            </div>
+        </div>
+    </div>
+
     <!-- EJEMPLO TEOREMA DE MULTIPLICACIÓN -->
     <div class="example-step" data-section="conditional" data-solution-steps="5" style="border: 2px solid #48c9b0; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #76d7c4; margin-top: 0; font-size: 24px;">
-            <span style="margin-right: 10px;">×</span> Teorema de la Multiplicación
+            8. Teorema de la Multiplicación
         </h3>
 
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #48c9b0; margin-bottom: 20px;">
@@ -597,7 +668,7 @@
     <!-- EJEMPLO TEOREMA DE PROBABILIDAD TOTAL -->
     <div class="example-step" data-section="conditional" data-solution-steps="4" style="border: 2px solid #85c1e9; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #aed6f1; margin-top: 0; font-size: 24px;">
-            <span style="margin-right: 10px;">∑</span> Teorema de Probabilidad Total
+            9. Teorema de Probabilidad Total
         </h3>
 
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #85c1e9; margin-bottom: 20px;">
@@ -674,7 +745,7 @@
     <!-- EJEMPLO TEOREMA DE BAYES -->
     <div class="example-step" data-section="conditional" data-solution-steps="5" style="border: 2px solid #f7dc6f; border-radius: 12px; padding: 25px; margin-bottom: 30px; display: none;">
         <h3 style="color: #f9e79f; margin-top: 0; font-size: 24px;">
-            Teorema de Bayes
+            10. Teorema de Bayes
         </h3>
 
         <div style="padding: 20px; border-radius: 8px; border: 1px solid #f7dc6f; margin-bottom: 20px;">
@@ -765,7 +836,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 9;
+        const totalSteps = 10;
         const examples = document.querySelectorAll('.example-step');
         let currentSolutionSteps = {};  // Track solution step for each example
 
